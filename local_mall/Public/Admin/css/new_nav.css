@@ -1,0 +1,119 @@
+		.navbar-default{
+			background-image: url(../images/daohangtiao.png);
+			background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+			/*background: #0c112e;*/
+			color: white;
+			margin-bottom: 0px;
+			border-left: none;
+			border-right:none;
+			padding: 0 17%;
+			background-color:rgba(255,255,255,0);
+			border: none;
+		    border-color: none; 
+		}
+		.navbar-brand {
+			width: 200px;
+		}
+		
+		.navbar-default .navbar-nav>li>a{
+			color: white;
+		}
+		
+		.navbar-default .navbar-text{
+			color: white;
+		}
+
+		 /*.navbar-nav li:hover{*/
+		 	/*background: red;*/
+		 /*}*/
+		 
+		.navbar-brand{
+			padding: 0 15px;
+		}
+
+		/*修改导航栏的背景*/
+		/*.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{*/
+			/*background-color: red;*/
+		/*}*/
+
+		.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+			background: none;
+		}
+
+
+		.dropdown-menu{
+	
+			background: none;
+			background-image:url(../images/dikuang1.png) ;
+			background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+		}
+		.dropdown-menu>li>a{
+			color: white;
+		}
+		
+		.navbar-nav>.xiao{
+			display: none;
+		}
+		
+		
+		@media only screen and (max-width: 910px) {
+			.navbar-default{
+				padding: 0 5px;
+			}
+			
+			.h3{
+				font-size:20px;
+			}
+			.h4{
+				font-size: 16px;
+			}
+		}
+		
+		@media only screen and (max-width: 780px) {
+
+			.h3{
+				font-size: 18px;
+			}
+			.h4{
+				font-size: 14px;
+			}
+		}
+		
+		@media only screen and (max-width: 768px){
+
+
+			.navbar-header,.navbar-left,.navbar-left>li,.navbar-right>li{
+				float: left;
+			}
+			.navbar-right{
+				float: right;
+			}
+			.navbar-nav>.xiao{
+				display: block;
+			}
+			.navbar-nav>.da{
+				display: none;
+			}
+			
+			
+			.h3{
+				font-size: 16px;
+			}
+			.h4{
+				font-size: 12px;
+			}
+			
+			
+			.navbar-brand {
+				width: 150px;
+				margin-top: 28px;
+				margin-right: 5px;
+			}	
+		} 
+
+
+		@media only screen and (max-width: 768px){
+					.nav>li>a{
+						padding-right: 5px;
+					}	
+		}

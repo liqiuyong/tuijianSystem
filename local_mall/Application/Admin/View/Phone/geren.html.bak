@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>个人</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm.min.css">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm-extend.min.css">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/myPagination.css">
+		<script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+
+	</head>
+	<style>
+
+	</style>
+	<body>
+
+		<div class="page-group">
+			<div class="page">
+				<!--导航栏-->
+				<include file="Public/nav_m" />
+
+				<div class="content">
+
+					<include file="Public/marquee_m" />
+					<div class="content-block">
+
+						<div class="card">
+							<img src="{$Think.ADMIN_IMG}/img/shenfenrenzheng.png" style="width:100%">
+							<div style="position: absolute;width: 100%;height: 90%;top: 10%;">
+								<div class="row text-center">
+									<div class="col-50">
+										上传身份证正面
+										<div>
+											<if condition="$pic1">
+												<img id="pic1" src="{$pic1}" style="width: 69%;background: #fff;padding: 5px;border-radius: 8px;margin: 10px 0;">
+												<else />
+												<img id="pic1" src="{$Think.ADMIN_IMG}/img/xukuang.png" style="width: 69%;background: #fff;padding: 5px;border-radius: 8px;margin: 10px 0;">
+											</if>
+
+										</div>
+										<input type="file" class="file-input" name="uploadfile[]" id="file"  capture="camera"    accept="image/*" />
+
+									</div>
+									<div class="col-50">
+										上传身份证反面
+										<div>
+											<if condition="$pic2">
+												<img id="pic2" src="{$pic2}" style="width: 69%;background: #fff;padding: 5px;border-radius: 8px;margin: 10px 0;">
+
+												<else/>
+												<img id="pic2" src="{$Think.ADMIN_IMG}/img/xukuang.png" style="width: 69%;background: #fff;padding: 5px;border-radius: 8px;margin: 10px 0;">
+
+											</if>
+										</div>
+										<input type="file" class="file-input" name="uploadfile[]" id="file2" multiple="multiple"  accept="image/*" />
+
+									</div>
+								</div>
+
+								<div class="list-block">
+									<ul>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">姓名：</div>
+													<div class="item-input">
+														<input id="real_name_2" type="text" value="<if condition="$user">{$user.real_name}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">身份证号：</div>
+													<div class="item-input">
+														<input id="real_card_2" type="text" value="<if condition="$user">{$user.real_card}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">银行卡号：</div>
+													<div class="item-input">
+														<input id="bank_card_2" type="text" value="<if condition="$user">{$user.bank_card}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">开户行：</div>
+													<div class="item-input">
+														<input id="bank_name_2" type="text" value="<if condition="$user">{$user.bank_name}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<a onclick="sub_geren()" class="button">
+									<img  id="sub-btn2" src="{$Think.ADMIN_IMG}/img/tijiao.png" style="width: 45%;">
+								</a>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</body>
+	<script type='text/javascript' src='{$Think.ADMIN_JS}/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='{$Think.ADMIN_JS}/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='{$Think.ADMIN_JS}/sm-extend.min.js' charset='utf-8'></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/geren.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+	<script type="text/javascript">
+
+
+
+        $(function () {
+
+
+            //提交按钮
+			$("#sub-btn").click(function () {
+	//                alert(123);
+				var img1 = $("#img1").attr('src');
+				var img2 = $("#img2").attr('src');
+				var real_name = $("#real_name").val();
+				var real_card = $("#real_card").val();
+				var bank_name = $("#bank_name").val();
+				var bank_card = $("#bank_card").val();
+
+				$.post(
+					"geren.html",
+					{
+						img1 : img1,
+						img2 : img2,
+						real_card : real_card,
+						real_name : real_name,
+						bank_name : bank_name,
+						bank_card : bank_card,
+					},
+					function (data) {
+						if (data.status == 1){
+							alert(data.msg);
+							window.location.href = "./index.html";
+						}else {
+							$("#info").html(data.msg);
+						}
+					}
+					,'json'
+				)
+
+			})
+
+
+
+			//		图片1上传
+			$("#file").change(function(){
+				$("#info").html("");
+				var formdata = new FormData;
+				//把jQuery对象转成js对象  .get(0)
+				var dataArr = $('#file').get(0).files;
+
+				for (var i=0; i<dataArr.length; i++){
+					formdata.append('myfiles['+i+']',dataArr[i]);
+				}
+				$.ajax({
+					url:"upload_img.html",
+					type:"POST",
+					data:formdata,
+					contentType:false,
+					processData:false,
+					success:function(data){
+						$("#info").html(data);
+						if (data.status == 1){
+							console.log(data.msg);
+							console.log(data.src);
+//                            $('.pic1').css( "background-image","url("+data.src+")");
+                            $("#pic1").attr('src',data.src);
+//							$("#file").hide();
+//							$("#img1").attr('src',data.src);
+//							$("#img1").show();
+						}else{
+							console.log(data.msg);
+							$("#info").text("上传存在错误1");
+						}
+
+					},
+					error:function () {
+						$("#info").html('上传存在错误2');
+					},
+					dataType:"json"
+				});
+
+			})
+
+
+			//		图片2上传
+			$("#file2").change(function(){
+				$("#info").html("");
+				var formdata = new FormData;
+				//把jQuery对象转成js对象  .get(0)
+				var dataArr = $('#file2').get(0).files;
+
+				for (var i=0; i<dataArr.length; i++){
+					formdata.append('myfiles_2['+i+']',dataArr[i]);
+				}
+				$.ajax({
+					url:"upload_img.html",
+					type:"POST",
+					data:formdata,
+					contentType:false,
+					processData:false,
+					success:function(data){
+						$("#info").html(data);
+						if (data.status == 1){
+							console.log(data.msg);
+							console.log(data.src);
+                            $("#pic2").attr('src',data.src);
+//							$("#file2").hide();
+//							$("#img2").attr('src',data.src);
+//							$("#img2").show();
+						}else{
+							console.log(data.msg);
+							$("#info").text("上传存在错误1");
+						}
+
+					},
+					error:function () {
+						$("#info").html('上传存在错误2');
+					},
+					dataType:"json"
+				});
+
+			})
+
+
+        })
+
+
+		function alert_check(){
+            alert("请先完善个人信息!");
+            return false;
+		}
+
+
+
+	
+	</script>
+	<script type="text/javascript">
+
+        $.init();
+
+        Zepto(".open-panel").click(function(){
+            Zepto(".close-panel").show();
+            Zepto(".open-panel").hide();
+        });
+        Zepto(".close-panel").click(function(){
+            Zepto(".open-panel").show();
+            Zepto(".close-panel").hide();
+        });
+
+	</script>
+
+</html>

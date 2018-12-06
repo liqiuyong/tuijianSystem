@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>交易密码修改</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/new_nav.css"/>
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/index.css"/>
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/gonggao.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/geren.css"/>
+	</head>
+	<style>
+
+		
+		.right-div{
+			background-image: url({$Think.ADMIN_IMG}/3.png);
+			min-height: 500px;
+			padding: 10px 20px;
+		}
+
+		
+		
+        
+	</style>
+	<body style="">
+
+	<!--导航栏-->
+	<include file="Public/nav" />
+
+	<!--导航 结束/-->
+
+	<!--公告栏-->
+	<!--<div class="gonggao">-->
+		<!--<marquee  onmouseover=this.stop() onmouseout=this.start() behavior="scroll" direction="left" class="gonggao_text">欢迎登录盛英汇管理系统</marquee>-->
+
+	<!--</div>-->
+		 
+		 <!--内容区域-->
+		 <div class="container main" style="padding-top: 10px">
+
+			<!--内容区域-->
+			<div class="content">
+				
+				<div class="row">
+					<div class="col-xs-4">
+						<span class="nichen-div">个人昵称: {$user['phone']}</span>
+					</div>
+					<if condition="$user['is_checked'] eq 2">
+						<div class="col-xs-8">
+							<span style="color: red;font-size: 24px;font-weight: bold">您当前个人信息不完整,请先完善个人信息!</span>
+						</div>
+
+					</if>
+
+				</div>
+				<div class="row">
+					
+					<!--左侧导航-->
+					<div class="col-xs-3 col-sm-3">
+						
+	
+						
+						<ul class=" left-nav">
+							<li><a href="geren.html"><img src="{$Think.ADMIN_IMG}/s1.png" width="100%"/></a></li>
+							<li><a href="mimaxiugai.html"><img src="{$Think.ADMIN_IMG}/m1.png" width="100%"/></a></li>
+							<li><img src="{$Think.ADMIN_IMG}/j1-h.png" width="100%"/></li>
+							<li><a href="kefulianxi.html"><img src="{$Think.ADMIN_IMG}/k1.png" width="100%"/></a></li>
+							<li><a href="faq.html"><img src="{$Think.ADMIN_IMG}/f1.png" width="100%"/></a></li>
+						</ul>
+						
+						
+					</div>
+					
+					<!--右侧内容显示-->
+					<div class="col-xs-offset-1 col-xs-8 col-sm-offset-1 col-sm-5">
+						
+						<div class="right-div">
+							
+							
+							<table class="table">
+							    <thead>
+							    <tr>
+							        <th  class="h4" colspan="2"></th>
+							        <!--<th></th>-->
+							       
+							    </tr>
+							    </thead>
+							    <tbody>
+	
+									<tr>
+										<td class="h4">输入手机号:</td>
+										<td class="h4"><input type="text" name="" id="phone" value="" maxlength="11" /></td>
+									</tr>
+									<tr>
+										<td class="h4">输入验证码:</td>
+										<td class="h4">
+											<div class="" style="position: relative;">
+												<input type="text" name="" id="code" value="" maxlength="4" />
+												<a onclick="get_phoneCode()"   class="btn btn-warning phone-code">获取验证码</a>
+											</div>
+
+										</td>
+									</tr>
+									<tr>
+										<td class="h4">输入身份证信息:</td>
+										<td  class="h4"><input type="text" name="" id="real_card" value="" maxlength="30" /></td>
+									</tr>
+									<tr>
+										<td class="h4">修改密码:</td>
+										<td  class="h4"><input type="text" name="password" id="password" value="" maxlength="32" /></td>
+									</tr>
+									<tr>
+										<td class="h4">确认密码:</td>
+										<td  class="h4"><input type="text" name="repassword" id="repassword" value="" maxlength="32" /></td>
+									</tr>
+									<tr id="info">
+	
+									</tr>
+														   
+							   </tbody>
+							</table>
+								
+							<div id="info" style="color: red"></div>
+							<div class="" style="text-align: center;padding:0 10px 10px 0;">
+								<button id="modiy_btn" class="btn" style="padding: 0;border: none;"><img src="{$Think.ADMIN_IMG}/xiugai_btn.png"/></button>
+							</div>
+
+							
+						</div>
+
+
+					</div>
+											
+					
+				</div>
+							
+			</div>
+			
+		 
+		 </div>
+				
+	
+				
+	
+
+
+		
+	</body>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/jquery-3.1.0.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/geren.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+	
+	<script type="text/javascript">
+		
+		
+//		获取验证码
+		function get_phoneCode() {
+            var phone = $("#phone").val();
+            var btn = $('.phone-code')
+
+            if (btn.attr("disabled")){
+                alert("验证码已发送,请勿重复提交");
+                return false;
+            }
+
+            btn.attr('disabled',"disabled");
+            run();
+			$.post(
+
+				"get_phoneCode.html",
+				{
+					phone : phone
+				},
+				function (data) {
+					if (data.status == 1){
+						console.log(data.msg);
+
+					}else {
+						console.log(data.msg);
+						alert(data.msg);
+                        btn.attr('disabled',false);
+					}
+				}
+				,'json'
+
+			)
+
+
+        }
+
+//		验证码框倒计时按钮
+        function run(){
+            var btn = $('.phone-code')
+//            alert("验证码已发送");
+            var time = 20;//定义时间变量。用于倒计时用
+            var timer = null;//定义一个定时器；
+            timer = setInterval(function(){
+                ///开启定时器。函数内执行
+
+                btn.attr('disabled',"disabled");
+				btn.text(" 已发送 "+ time)
+                time--;//时间值自减
+                if(time ==0){
+					btn.text('重新发送验证码');
+                    btn.attr('disabled',false);
+                    clearInterval(timer); //清除定时器
+
+                }
+            },1000)
+        }
+
+
+       $(function () {
+// 		修改提交
+            $("#modiy_btn").click(function () {
+                var phone = $("#phone").val();
+                var code = $("#code").val();
+                var real_card = $("#real_card").val();
+                var password = $("#password").val();
+                var repassword = $("#repassword").val();
+
+                if (phone.length == 0){
+                    alert("手机号码不为空!");
+                    return;
+                }
+                if (code.length == 0){
+                    alert("验证码不为空!");
+                    return;
+                }
+                if (real_card.length == 0){
+                    alert("身份证号码不为空!");
+                    return;
+                }
+                if (password.length == 0){
+                    alert("请输入修改密码!");
+                    return;
+                }
+                if (password.length == 0){
+                    alert("请输入确认密码!");
+                    return;
+                }
+                if (password != repassword){
+                    alert("密码不一致,请重新输入!");
+                    return;
+                }
+
+                $.post(
+//                    "{:U('Index/mimaxiugai')}",
+                    "jiaoyimimaxiugai.html",
+                    {
+                        phone : phone,
+                        code : code,
+                        real_card : real_card,
+                        password : password,
+                        repassword : repassword
+                    },
+                    function (data) {
+
+                        if (data.status == 1){
+                            alert(data.msg);
+                            window.location.href = "index.html";
+
+                        }else {
+                            alert(data.msg);
+                        }
+                    }
+                    ,'json'
+                )
+
+            })
+        })
+		
+
+		
+		
+	</script>
+	
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>报单</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm.min.css">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm-extend.min.css">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/myPagination.css">
+		<script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+	</head>
+	<style type="text/css">
+		.list-block .item-content {
+			min-height: 1.6rem;
+		}
+		.list-block .item-inner {
+			padding-top: 0rem;
+			padding-bottom: 0rem;
+			min-height: 1.6rem;
+		}
+		.modal{
+			width: 90%;
+			left: 5%;
+			margin-left: 0;
+			border: 2px solid #ffd870;
+			border-radius: 0;
+			background: #442e19;
+			min-height: 50vh;
+		}
+		.modal-inner{
+			background: #442e19;
+			border-radius: 0;
+		}
+		.modal-buttons{
+			position: absolute;
+			height: 35px;
+			width: 101.2%;
+			top: -35px;
+			left: -.6%;
+		}
+		.modal-buttons span{
+			background:  #ffd870;
+			background-repeat: no-repeat;
+			background-image: url({$Think.ADMIN_IMG}/img/cha.png);
+			background-position: 98% 9px;
+		}
+	</style>
+
+
+
+
+		<div class="page-group">
+			<div class="page">
+				<!--导航栏-->
+				<include file="Public/nav_m" />
+
+				<div class="content">
+					<include file="Public/marquee_m" />
+
+					<div class="content-block">
+
+						<div class="list-block media-list">
+							<ul>
+								<li>
+									<div id="invite_p2" class="item-content"<if condition="empty($user['invite_code'])">style="display:none;"</if> >推荐码：{$user.invite_code}</div>
+									<div class="item-content">
+										<div class="item-media" id="erweima-div2"  <if condition="empty($user['invite_code'])">style="display:none;"</if> >
+
+											<if condition="empty($user['invite_code'])">
+												<img id="erweima2" src="qrcode.html" width="100">
+												<else/>
+												<img id="erweima2" src="qrcode.html?invite_code={$user['invite_code']}"  width="100"/>
+
+											</if>
+										</div>
+										<div class="item-inner">
+											<div class="item-title-row">
+												<span class="item-title"  onclick="get_inviteCode()" >生成推荐码</span>
+												<span class="item-title pull-right">红积分总额：0</span>
+											</div>
+											<div class="item-title-row">
+												<span class="item-title"  onclick="get_qrcode()">生成二维码</span>
+												<span class="item-title pull-right">可兑换：0</span>
+											</div>
+											<!--<div class="item-title-row">-->
+												<!--<span class="item-title">复制</span>-->
+												<!--<span class="item-title pull-right"><img src="{$Think.ADMIN_IMG}/img/duihuan.png" style="width:90px;"></span>-->
+											<!--</div>-->
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div class="card">
+							<table border="0">
+							<tr class="thead">
+								<th>等级<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+								<th>推荐总数<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+								<th>有效数量<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+								<th>红白黑积分</th>
+								<th>操作</th>
+							</tr>
+							<tr>
+								<th>省级代理</th>
+								<th>0</th>
+								<th>0</th>
+								<th>0/0/0</th>
+								<th><a href="tuijian_m.html"><img src="{$Think.ADMIN_IMG}/img/chakanxiangqing.png" style="width:60px"></a></th>
+							</tr>
+							<tr>
+								<th>市级代理</th>
+								<th>0</th>
+								<th>0</th>
+								<th>0/0/0</th>
+								<th><a href="tuijian_m.html"><img src="{$Think.ADMIN_IMG}/img/chakanxiangqing.png" style="width:60px"></a></th>
+							</tr>
+							<tr>
+								<th>金钻代理</th>
+								<th>0</th>
+								<th>0</th>
+								<th>0/0/0</th>
+								<th><a href="tuijian_m.html"><img src="{$Think.ADMIN_IMG}/img/chakanxiangqing.png" style="width:60px"></a></th>
+							</tr>
+							<tr>
+								<th>钻石代理</th>
+								<th>0</th>
+								<th>0</th>
+								<th>0/0/0</th>
+								<th><a href="tuijian_m.html"><img src="{$Think.ADMIN_IMG}/img/chakanxiangqing.png" style="width:60px"></a></th>
+							</tr>
+							<tr>
+								<th>铂金代理</th>
+								<th>0</th>
+								<th>0</th>
+								<th>0/0/0</th>
+								<th><a href="tuijian_m.html"><img src="{$Think.ADMIN_IMG}/img/chakanxiangqing.png" style="width:60px"></a></th>
+							</tr>
+							<tr>
+								<th>金牌代理</th>
+								<th>0</th>
+								<th>0</th>
+								<th>0/0/0</th>
+								<th><a href="tuijian_m.html"><img src="{$Think.ADMIN_IMG}/img/chakanxiangqing.png" style="width:60px"></a></th>
+							</tr>
+							<tr>
+								<th>银牌代理</th>
+								<th>0</th>
+								<th>0</th>
+								<th>0/0/0</th>
+								<th><a href="tuijian_m.html"><img src="{$Think.ADMIN_IMG}/img/chakanxiangqing.png" style="width:60px"></a></th>
+							</tr>
+							<tr>
+								<th>铜牌代理</th>
+								<th>0</th>
+								<th>0</th>
+								<th>0/0/0</th>
+								<th><a href="tuijian_m.html"><img src="{$Think.ADMIN_IMG}/img/chakanxiangqing.png" style="width:60px"></a></th>
+							</tr>
+						</table>
+						</div>
+					</div>
+					<!--<div id="pagination" class="pagination"></div>-->
+				</div>
+
+			</div>
+		</div>
+
+
+	</body>
+	<script type='text/javascript' src='{$Think.ADMIN_JS}/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='{$Think.ADMIN_JS}/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='{$Think.ADMIN_JS}/sm-extend.min.js' charset='utf-8'></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/charge.js" ></script>
+	<script>
+
+        function get_inviteCode() {
+            $.post(
+                'get_inviteCode.html',
+                {},
+                function (data) {
+                    if (data.status == 1){
+                        $("#invite_p").html("推荐码:"+data.invite_code);
+                        $("#invite_p").show();
+                        $("#invite_p2").html("推荐码:"+data.invite_code);
+                        $("#invite_p2").show();
+					}
+                    alert(data.msg);
+                }
+                ,'json'
+            )
+        }
+
+
+        function get_qrcode() {
+//            alert(123)
+            $.post(
+                'get_qrcode',
+                {},
+                function (data) {
+                    if (data.status == 1){
+                        alert(data.msg);
+                        $newSrc = "qrcode.html?invite_code="+data.invite_code;
+                        $("#erweima").attr('src',$newSrc);
+                        $("#erweima-div").show();
+                        $("#erweima2").attr('src',$newSrc);
+                        $("#erweima-div2").show();
+
+                    }else {
+                        alert(data.msg);
+                    }
+                }
+
+            )
+        }
+	</script>
+
+
+	<script type="text/javascript">
+
+
+        $.init();
+
+        Zepto(".open-panel").click(function(){
+            Zepto(".close-panel").show();
+            Zepto(".open-panel").hide();
+        });
+        Zepto(".close-panel").click(function(){
+            Zepto(".open-panel").show();
+            Zepto(".close-panel").hide();
+        });
+
+	</script>
+	<script>
+        window.onload = function () {
+            new myPagination({
+                id: 'pagination',
+                curPage:1, //初始页码
+                pageTotal: 50, //总页数
+                pageAmount: 10,  //每页多少条
+                dataTotal: 500, //总共多少条数据
+                pageSize: 5, //可选,分页个数
+                showPageTotalFlag:true, //是否显示数据统计
+                showSkipInputFlag:true, //是否支持跳转
+                getPage: function (page) {
+                    //获取当前页数
+                    console.log(page);
+                }
+            })
+
+        }
+	</script>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<html class="no-js" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>用户管理</title>
+    <meta name="description" content="这是一个 table 页面">
+    <meta name="keywords" content="table">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="icon" type="image/png" href="<?php echo __HOME__IMG__;?>favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="<?php echo __HOME__IMG__;?>app-icon72x72@2x.png">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+    <link rel="stylesheet" href="<?php echo __HOME__CSS__;?>amazeui.min.css"/>
+    <link rel="stylesheet" href="<?php echo __HOME__CSS__;?>admin.css">
+</head>
+
+<style>
+    /* 分页 */
+    .page .current,.page a,.page a:hover,.page span{display:inline-block;margin-right:2px;padding:0 10px;height:25px;line-height:25px;vertical-align:middle}
+    .page a,.page span{color:#404548;border:1px solid #D7DBDC;background-color:#F6FFFF}
+    .page .current,.page a:hover{text-decoration:none;color:#FFF;background-color:#337ab7;vertical-align:middle}
+    .page .next,.page .prev{font-family:"宋体"}
+</style>
+
+
+<body>
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+    以获得更好的体验！</p>
+<![endif]-->
+
+
+<include file="common/index_top" />
+<div class="am-cf admin-main">
+
+    <include file="common/index_left" />
+    <!-- sidebar start -->
+
+    <!-- sidebar end -->
+
+    <!-- content start -->
+    <div class="admin-content">
+
+        <div class="am-cf am-padding">
+            <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">用户管理</strong><small></small></div>
+        </div>
+
+
+        <!--<div class="am-g">-->
+            <!--<div class="am-u-md-6 am-cf">-->
+                <!--<div class="am-fl am-cf">-->
+                    <!--<div class="am-btn-toolbar am-fl">-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <!--<div class="am-u-md-2 am-cf">-->
+                <!--<div class="am-fr">-->
+                    <!--<div class="am-input-group am-input-group-sm">-->
+                        <!--<input id="selinfo" placeholder="模糊查询" type="text" class="am-form-field" value="">-->
+                        <!--<span class="am-input-group-btn">-->
+                            <!--<button id="selbtn" class="am-btn am-btn-default" type="button">搜索</button>-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+
+        <form>
+
+            <div class="am-u-md-2 am-cf">
+                <div class="am-fr">
+                    <div class="am-input-group am-input-group-sm">
+                        <input id="" name="real_card" placeholder="身份证号码" type="text" class="" value="<if condition="$_GET['real_card']">{$_GET['real_card']}</if>">
+                    </div>
+                </div>
+            </div>
+
+            <div class="am-u-md-2 am-cf">
+                <div class="am-fr">
+                    <div class="am-input-group am-input-group-sm">
+                        <input id="" name="phone" placeholder="手机号码" type="text" class="" value="<if condition="$_GET['phone']">{$_GET['phone']}</if>">
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="am-u-md-8 am-cf">
+                <div class="am-fr">
+                    <div class="am-input-group am-input-group-sm">
+                  <span class="am-input-group-btn">
+                  <button id="" class="am-btn am-btn-success" type="submit">搜索</button>
+                </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+
+
+
+
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <form class="am-form">
+                    <table class="am-table am-table-striped am-table-hover table-main">
+                        <thead>
+                        <tr>
+
+                            <th class="table-id">用户ID</th>
+                            <th class="table-title">用户手机号</th>
+                            <th class="table-type">归属地</th>
+                            <th class="table-type">推荐人</th>
+
+                            <th class="table-date">姓名</th>
+                            <th class="table-date">身份证</th>
+                            <th class="table-date">身份证正面</th>
+                            <th class="table-date">身份证反面</th>
+                            <th class="table-date">银行卡</th>
+                            <th class="table-set">银行信息</th>
+                            <th class="table-set">代理等级</th>
+                            <th class="table-set">总充值</th>
+                            <th class="table-set">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                            <volist name="userlist" id="userlist">
+                                <tr>
+                                    <td>{$userlist.user_id}</td>
+                                    <td>{$userlist.phone|default='-'}</td>
+                                    <td>{$userlist.province|default='-'}</td>
+                                    <td>{$userlist.p_phone|default='-'}</td>
+                                    <td>{$userlist.real_name|default='-'}</td>
+                                    <td>{$userlist.real_card|default='-'}</td>
+                                    <if condition="$userlist.img1 neq ''">
+                                        <td><div style="width: 50px"><a href="{$userlist.img1}" target="_blank"><img src="{$userlist.img1}"></a></div></td>
+                                       <else/>
+                                        <td>未上传</td>
+                                    </if>
+
+                                    <if condition="$userlist.img2 neq ''">
+                                      <td><div style="width: 50px"><a href="{$userlist.img2}" target="_blank"><img src="{$userlist.img2}"></a></div></td>
+                                        <else/>
+                                        <td>未上传</td>
+                                    </if>
+
+                                    <td>{$userlist.bank_card|default='-'}</td>
+                                    <td>{$userlist.bank_name|default='-'}</td>
+                                    <td>{$userlist.level|default='-'}</td>
+                                    <td>{$userlist.totleCharge|default=0}</td>
+                                    <td>
+
+
+
+                                       <div class='am-btn-toolbar'>
+                                            <div class='am-btn-group am-btn-group-xs'>
+                                                <a onclick='resetPwd({$userlist.user_id},{$userlist.phone})' class='am-btn am-btn-default am-btn-xs am-text-secondary'><span class='am-icon-pencil-square-o'></span>重置密码</a>
+                                            </div>
+                                       </div>
+
+                                    </td>
+                                </tr>
+
+                            </volist>
+
+
+                        </tbody>
+                    </table>
+
+                    <div class="am-cf">
+                        <span>已为您查到{$count}条记录...</span>
+                    </div>
+                    <div class="am-cf">
+                        <div class="am-pagination">
+
+                            <div class="page">
+                                {$page}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <hr />
+                    <p>注：.....</p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <!-- content end -->
+</div>
+
+<!--[if lt IE 9]>
+<script src="<?php echo __HOME__JS__;?>jquery1.11.1.min.js"></script>
+<script src="<?php echo __HOME__JS__;?>modernizr.js"></script>
+<script src="<?php echo __HOME__JS__;?>polyfill/rem.min.js"></script>
+<script src="<?php echo __HOME__JS__;?>polyfill/respond.min.js"></script>
+<script src="<?php echo __HOME__JS__;?>amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="<?php echo __HOME__JS__;?>jquery.min.js"></script>
+<script src="<?php echo __HOME__JS__;?>amazeui.min.js"></script>
+<!--<![endif]-->
+<script src="<?php echo __HOME__JS__;?>app.js"></script>
+<script>
+
+
+        // 用户密码重置
+        function resetPwd(id,name) {
+            if(window.confirm("确认是否重置用户"+name+"的密码")){
+
+                window.location.href = "index.php?g=admin&c=index&a=resetPwd&t=owner&id="+id;
+                window.location.href = "{:U('resetPwd')}?user_id="+id;
+            }
+        }
+
+        // 用户数据删除
+        function delOwn(id) {
+            if (window.confirm("确认是否删除本条数据?")){
+                window.location.href = "index.php?g=admin&c=index&a=del&t=owner&id="+id;
+            }
+        }
+
+        $(function () {
+            //点击触发 搜索事件
+            $("#selbtn").click(function () {
+                var data = $("#selinfo").val();
+                window.location.href = "index.php?g=admin&c=index&a=owner_manager&data="+data;
+            })
+
+
+        })
+
+
+
+</script>
+</body>
+</html>

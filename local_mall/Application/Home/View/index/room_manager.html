@@ -1,0 +1,225 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>民宿预定--房源管理</title>
+  <meta name="description" content="这是一个 table 页面">
+  <meta name="keywords" content="table">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <link rel="icon" type="image/png" href="<?php echo __HOME__IMG__;?>favicon.png">
+  <link rel="apple-touch-icon-precomposed" href="<?php echo __HOME__IMG__;?>app-icon72x72@2x.png">
+  <meta name="apple-mobile-web-app-title" content="Amaze UI" />
+  <link rel="stylesheet" href="<?php echo __HOME__CSS__;?>amazeui.min.css"/>
+  <link rel="stylesheet" href="<?php echo __HOME__CSS__;?>admin.css">
+  <script type="text/javascript" src="<?php echo __HOME__JS__;?>jquery.js"></script>
+</head>
+<body>
+<include file="common/index_top" />
+<div class="am-cf admin-main">
+
+    <include file="common/index_left" />
+  <!-- sidebar start -->
+  <!-- sidebar end -->
+
+  <!-- content start -->
+  <div class="admin-content">
+
+    <div class="am-cf am-padding">
+      <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">房源管理</strong><small></small></div>
+    </div>
+
+    <div class="am-u-md-5 am-cf">
+      <div class="am-fr">
+        <div class="am-input-group am-input-group-sm">
+          <input id="selinfo" placeholder="模糊查询" type="text" class="am-form-field" value="">
+          <span class="am-input-group-btn">
+                  <button id="selbtn" class="am-btn am-btn-default" type="button">搜索</button>
+                </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="am-g">
+      <div class="am-u-sm-12">
+        <table class="am-table am-table-striped am-table-hover table-main">
+          <thead>
+          <tr>
+            <th>序号</th><th>房型/人数</th><th>创建时间</th><th>地址</th><th> 价格(元)</th><th> 客房描述</th><th>房间图片</th><th>房东姓名</th><th>审核状态</th><th>审核操作</th>
+          </tr>
+          </thead>
+
+
+          <tbody>
+          <?php
+                if(isset($_GET['data'])){
+                    $roomlist = $this->data['selData'];
+                }else{
+                    $roomlist = $this->data['roomlist'];
+                }
+                $count = 0;
+                if(!empty($roomlist)){
+                    $count = count($roomlist);
+
+                    $pageRows = 5;
+                    $curr_page = $_GET['page'];
+                    $pageNum = ceil($count/$pageRows);
+
+                    if ($curr_page<1){
+                    $curr_page = 1;
+                    }elseif ($curr_page>$pageNum){
+                    $curr_page = $pageNum;
+                    }
+
+                    $prepage = $curr_page - 1;
+                    $nextpage = $curr_page + 1;
+                    $offset = ($curr_page-1)*$pageRows;
+
+
+                    foreach($roomlist as $k => $v){
+                        if( $offset <= $k && $k < ($offset+$pageRows)){
+                            echo "<tr>";
+                            echo "<td>".($k+1)."</td>";
+                            echo "<td>".$v['type']."<br/>".$v['p_num']."人</td>";
+                            echo "<td>".$v['c_time']."</td>";
+                            echo "<td>".$v['addr']."</td>";
+                            echo "<td>".$v['price']."</td>";
+                            echo "<td>".$v['subscribe']."</td>";
+                            echo "<td>";
+                            echo "<a href='".SERVER_URL.$v['img']."'><img style='height: 50px' src='".SERVER_URL.$v['img']."'/></a>";
+                            echo "</td>";
+                            echo "<td>".$v['owner_name']."</td>";
+                            echo "<td>";
+                                  if($v['review'] == 0){
+                                        echo "待审核";
+                                  }
+                                  if($v['review'] == 1){
+                                        echo "审核不通过";
+                                  }
+                                  if($v['review'] == 3){echo "审核通过";}
+                            echo "</td>";
+                            echo "<td>";
+
+                            echo    "<div class='am-btn-toolbar'>";
+                            echo        "<div class='am-btn-group am-btn-group-xs'>";
+                            echo            "<a onclick='review_confirm(".$v['id'].")' class='am-btn am-btn-default am-btn-xs am-text-secondary'><span class='am-icon-pencil-square-o'></span>通过</a>";
+                            echo            "<a onclick='review_cancel(".$v['id'].")' class='am-btn am-btn-default am-btn-xs am-text-danger'><span class='am-icon-trash-o'></span>不通过</a>";
+                            echo        "</div>";
+                            echo    "</div>";
+                            echo  "</td>";
+                            echo "</tr>";
+                        }
+                    }
+                }else{
+                echo "<tr><td colspan='9'><h1>无当前数据!!</h1></td></tr>";
+                }
+            ?>
+        </tbody>
+        </table>
+          <div class="am-cf">
+              <hr/>
+              已为您查询到 <?php echo $count?>条记录
+              <div class="am-fr">
+                  <ul class="am-pagination">
+                      <?php
+                 if(!empty($roomlist)){
+                    echo "<li><a href='?g=admin&c=index&a=room_manager";
+                    if(!empty($_GET['data'])){
+                      echo "&data=".$_GET['data'];
+                      }
+                      echo "&page=1'>首页</a></li>";
+
+                      echo "<li><a href='?g=admin&c=index&a=room_manager";
+                    if(!empty($_GET['data'])){
+                      echo "&data=".$_GET['data'];
+                      }
+                      echo "&page=$prepage'>上一页</a></li>";
+                      for($i=1;$i<=$pageNum;$i++){
+                      echo "<li";
+                      if($i == $curr_page ){
+                      echo " class='am-active'";
+                      }
+                      echo ">";
+                      echo  "<a href='?g=admin&c=index&a=room_manager";
+                    if(!empty($_GET['data'])){
+                      echo "&data=".$_GET['data'];
+                      }
+                      echo "&page=".$i."'>".$i."</a></li>";
+                      }
+
+                      echo "<li><a href='?g=admin&c=index&a=room_manager";
+                    if(!empty($_GET['data'])){
+                      echo "&data=".$_GET['data'];
+                      }
+                      echo "&page=$nextpage'>下一页</a></li>";
+
+                      echo "<li><a href='?g=admin&c=index&a=room_manager";
+                    if(!empty($_GET['data'])){
+                      echo "&data=".$_GET['data'];
+                      }
+                      echo "&page=$pageNum'>尾页</a></li>";
+                      }
+                      ?>
+                      <!--<li class="am-disabled"><a href="#">«</a></li>-->
+                      <!--<li class="am-active"><a href="#">1</a></li>-->
+                      <!--<li><a href="#">2</a></li>-->
+                      <!--<li><a href="#">3</a></li>-->
+                      <!--<li><a href="#">4</a></li>-->
+                      <!--<li><a href="#">5</a></li>-->
+                      <!--<li><a href="#">»</a></li>-->
+                  </ul>
+              </div>
+          </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+  <!-- content end -->
+</div>
+
+
+<!--[if lt IE 9]>
+<script src="<?php echo __HOME__JS__;?>jquery1.11.1.min.js"></script>
+<script src="<?php echo __HOME__JS__;?>modernizr.js"></script>
+<script src="<?php echo __HOME__JS__;?>polyfill/rem.min.js"></script>
+<script src="<?php echo __HOME__JS__;?>polyfill/respond.min.js"></script>
+<script src="<?php echo __HOME__JS__;?>amazeui.legacy.js"></script>
+<![endif]-->
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="<?php echo __HOME__JS__;?>jquery.min.js"></script>
+<script src="<?php echo __HOME__JS__;?>amazeui.min.js"></script>
+<!--<![endif]-->
+<script src="<?php echo __HOME__JS__;?>app.js"></script>
+
+<script>
+
+
+        function review_confirm(id) {
+            if (window.confirm("确认该房源审核通过?")){
+                window.location.href = "?g=admin&c=index&a=room_manager&review=3&id="+id;
+            }
+        }
+
+        function review_cancel(id) {
+            if (window.confirm("确认该房源审核不通过?")){
+                window.location.href = "?g=admin&c=index&a=room_manager&review=1&id="+id;
+            }
+        }
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>报单详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/new_nav.css"/>
+    <link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/index.css"/>
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/gonggao.css" />
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/main.css" />
+</head>
+<style>
+
+    body{
+        padding: 0px;
+    }
+
+    .table,.table>tbody>tr>td,.table>thead>tr>th{
+        border:0px;
+        /*text-align: center;*/
+    }
+    .table{
+        table-layout：fixed;
+        margin: 20px 0;
+    }
+
+    td{
+
+        word-wrap:break-word;word-break:break-all;
+    }
+
+    tbody tr:nth-child(odd){background:#674527;}
+
+    .order-list
+    {
+        background-image: url({$Think.ADMIN_IMG}/dingdang_bg_2.png);
+        background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+        margin-bottom: 20px;
+
+    }
+
+
+    /*二维码区域*/
+    .bottom-div-cont{
+        float: right;
+        width: 100px;
+        height: 100px;
+        /*border: 1px solid white;*/
+        line-height: 40px;
+
+        margin: 30px 0 0 30px;
+
+    }
+
+    @media only screen and (max-width: 768px){
+        .list-block .item-content {
+            min-height: 1.6rem;
+        }
+        .list-block .item-inner {
+            padding-top: 0rem;
+            padding-bottom: 0rem;
+            min-height: 1.6rem;
+        }
+        .modal{
+            width: 90%;
+            left: 5%;
+            margin-left: 0;
+            border: 2px solid #ffd870;
+            border-radius: 0;
+            background: #442e19;
+            min-height: 50vh;
+        }
+        .modal-inner{
+            background: #442e19;
+            border-radius: 0;
+        }
+        .modal-buttons{
+            position: absolute;
+            height: 35px;
+            width: 101.2%;
+            top: -35px;
+            left: -.6%;
+        }
+        .modal-buttons span{
+            background:  #ffd870;
+            background-repeat: no-repeat;
+            background-image: url(img/cha.png);
+            background-position: 98% 9px;
+        }
+        caption, th {
+            text-align: center;
+        }
+
+        .pagination{
+            display: block;
+        }
+    }
+
+</style>
+<body style="">
+
+
+<div class="bg_dev_div">
+<!--导航栏-->
+<!--导航栏-->
+<include file="Public/nav" />
+
+<!--导航 结束/-->
+
+<!--导航 结束/-->
+
+<!--公告栏-->
+<!--<div class="gonggao">-->
+    <!--<marquee  onmouseover=this.stop() onmouseout=this.start() behavior="scroll" direction="left" class="gonggao_text">欢迎登录盛英汇管理系统</marquee>-->
+
+<!--</div>-->
+
+<!--内容区域-->
+<div class="container main">
+
+    <div class="asset-main">
+
+        <div class="asset-main-bd">
+
+            <div class="tab_content1-top2 active">
+                <div class="customers3">
+                    <h3>省级代理列表</h3>
+                    <div class="top">
+                        <div>推荐总数：6000</div>
+                        <div>有效数量：800</div>
+                    </div>
+                    <div class="bottom">
+                        <div>奖励统计：  金600  银500  铜300</div>
+                        <a class="s-btn">充 值</a>
+                    </div>
+
+
+                </div>
+                <table class="customers">
+                    <tr>
+                        <th>
+                            姓名
+                        </th>
+                        <th>
+                            级别
+                        </th>
+                        <th>
+                            注册金额
+                        </th>
+                        <th>金银铜奖励</th>
+                        <th>其他奖励</th>
+                        <th>当前状态</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="alt">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="alt">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="alt">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="alt">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="alt">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div class="page-box">
+                    <a class="page-list"><img src="{$Think.ADMIN_IMG}/new/page-pre1.png"></a>
+                    <a class="page-list"><img src="{$Think.ADMIN_IMG}/new/page-pre2.png"></a>
+                    <a class="page-list">1</a>
+                    <a class="page-list">2</a>
+                    <a class="page-list">3</a>
+                    <a class="page-list">4</a>
+                    <a class="page-list">5</a>
+                    <a class="page-list">...</a>
+                    <a class="page-list reverse"><img src="{$Think.ADMIN_IMG}/new/page-pre1.png"></a>
+                    <a class="page-list reverse margin-right-20"><img src="{$Think.ADMIN_IMG}/new/page-pre2.png"></a>
+                    <div>
+                        第 <input type="text" value="1"> 页共199页
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</div>
+
+</div>
+
+
+<div class="sm_dev_div">
+
+    <div class="page-group">
+        <div class="page">
+            <!--导航栏-->
+            <include file="Public/nav_m" />
+
+            <div class="content">
+                <marquee style="position: fixed;max-width:640px;height: 1.6rem;width:100%;line-height: 1.6rem;text-align: center;font-size: 0.6rem;color:#fff;background: #39455a">欢迎登录盛英汇管理系统</marquee>
+                <div class="content-block">
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-content-inner text-center" style="font-size:.8rem;color:#ffff99;font-weight:bold">
+                            　省级代理列表
+                        </div>
+                        <div class="card-content-inner" style="font-size:.6rem;color:#feecbe">
+                            <div class="row no-gutter">
+                                推荐总数：6000
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                有效数量：800
+                            </div>
+                            <div class="row no-gutter">
+                                奖励统计：金600
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                银500
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                铜300
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <table border="0">
+                        <tr class="thead">
+                            <th>姓名</th>
+                            <th>级别</th>
+                            <th>注册金额</th>
+                            <th>金银铜奖励</th>
+                            <th>其他奖励</th>
+                            <th>当前状态</th>
+                        </tr>
+                        <!--<tr>-->
+                            <!--<th>张三</th>-->
+                            <!--<th>省级</th>-->
+                            <!--<th>80000</th>-->
+                            <!--<th>100/100/100</th>-->
+                            <!--<th></th>-->
+                            <!--<th>有效</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>张三</th>-->
+                            <!--<th>省级</th>-->
+                            <!--<th>80000</th>-->
+                            <!--<th>100/100/100</th>-->
+                            <!--<th></th>-->
+                            <!--<th>有效</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>张三</th>-->
+                            <!--<th>省级</th>-->
+                            <!--<th>80000</th>-->
+                            <!--<th>100/100/100</th>-->
+                            <!--<th></th>-->
+                            <!--<th>有效</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>张三</th>-->
+                            <!--<th>省级</th>-->
+                            <!--<th>80000</th>-->
+                            <!--<th>100/100/100</th>-->
+                            <!--<th></th>-->
+                            <!--<th>有效</th>-->
+                        <!--</tr>-->
+                    </table>
+                </div>
+                <div id="pagination" class="pagination"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/jquery-3.1.0.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/bootstrap.min.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        //        var browserWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+//		if(browserWidth < 768)
+        if(window.screen.width<=768){
+            dynamicLoadCss("{$Think.ADMIN_CSS}/sm.min.css");
+            dynamicLoadCss("{$Think.ADMIN_CSS}/sm-extend.min.css");
+            dynamicLoadCss("{$Think.ADMIN_CSS}/myPagination.css");
+            dynamicLoadJs("{$Think.ADMIN_JS}/myPagination.js");
+
+            dynamicLoadJs("{$Think.ADMIN_JS}/zepto.min.js");
+            dynamicLoadJs("{$Think.ADMIN_JS}/sm.min.js");
+            dynamicLoadJs("{$Think.ADMIN_JS}/sm-extend.min.js");
+
+
+        }
+
+
+    })
+
+    /**
+     * 动态加载JS
+     * @param {string} url 脚本地址
+     * @param {function} callback  回调函数
+     */
+    function dynamicLoadJs(url, callback) {
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = url;
+        if(typeof(callback)=='function'){
+            script.onload = script.onreadystatechange = function () {
+                if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete"){
+                    callback();
+                    script.onload = script.onreadystatechange = null;
+                }
+            };
+        }
+        head.appendChild(script);
+    }
+
+    /**
+     * 动态加载CSS
+     * @param {string} url 样式地址
+     */
+    function dynamicLoadCss(url) {
+        var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.type='text/css';
+        link.rel = 'stylesheet';
+        link.href = url;
+        head.appendChild(link);
+    }
+
+
+
+
+
+
+    $.init();
+
+    Zepto(".open-panel").click(function(){
+        Zepto(".close-panel").show();
+        Zepto(".open-panel").hide();
+    });
+    Zepto(".close-panel").click(function(){
+        Zepto(".open-panel").show();
+        Zepto(".close-panel").hide();
+    });
+
+</script>
+<script>
+    window.onload = function () {
+        new myPagination({
+            id: 'pagination',
+            curPage:1, //初始页码
+            pageTotal: 50, //总页数
+            pageAmount: 10,  //每页多少条
+            dataTotal: 500, //总共多少条数据
+            pageSize: 5, //可选,分页个数
+            showPageTotalFlag:true, //是否显示数据统计
+            showSkipInputFlag:true, //是否支持跳转
+            getPage: function (page) {
+                //获取当前页数
+                console.log(page);
+            }
+        })
+
+    }
+</script>
+</html>

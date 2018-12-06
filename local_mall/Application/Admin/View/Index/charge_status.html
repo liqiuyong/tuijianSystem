@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/new_nav.css"/>
+    <link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/index.css"/>
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/gonggao.css" />
+    <link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/main.css"/>
+
+</head>
+
+<body>
+<style>
+
+    body{
+        padding: 0;
+    }
+
+    .table,.table>tbody>tr>td,.table>thead>tr>th{
+        border:0px;
+        /*text-align: center;*/
+    }
+    .table{
+        table-layout：fixed;
+        margin: 20px 0;
+    }
+
+    td{
+
+        word-wrap:break-word;word-break:break-all;
+    }
+
+    th{
+        text-align: center;
+    }
+
+    /*tbody tr:nth-child(odd){background:#674527;}*/
+
+
+    @media only screen and (max-width: 768px) {
+        .list-block .item-content {
+            height: 1rem;
+            min-height: 1rem;
+        }
+
+        .card .list-block li {
+            margin: 0;
+        }
+
+        .card {
+            background: rgba(46, 66, 46, 0.2);
+        }
+
+        .card-content-inner {
+            padding: .45rem .75rem .2rem;
+        }
+
+    }
+
+</style>
+
+<div class="bg_dev_div">
+
+<!--顶部导航区域-->
+<!--导航栏-->
+<include file="Public/nav" />
+
+<!--导航 结束/-->
+
+<!--公告栏-->
+<!--<div class="gonggao">-->
+    <!--<marquee  onmouseover=this.stop() onmouseout=this.start() behavior="scroll" direction="left" class="gonggao_text">欢迎登录盛英汇管理系统</marquee>-->
+
+<!--</div>-->
+
+<!--内容区域-->
+<div class="container main">
+
+
+    <div class="main-cont">
+
+
+
+
+        <div class="asset-main">
+            <div class="order-mian">
+                <div class="order-hd">
+                    <a href="order_list.html" class="pre"><img  src="{$Think.ADMIN_IMG}/order/pre.png"></a>
+                    <img class="header" src="{$Think.ADMIN_IMG}/order/header.png">
+                </div>
+                <div class="order-mian-bd">
+                    <div class="order-num">
+                        <input type="text" id="order_num" value="{$order.order_num}" hidden>
+                        <div class="order-num-left">订单编号：{$order.order_num}</div>
+                        <div class="order-num-right">{$order.addtime|date="Y-m-d H:i:s",###}</div>
+                    </div>
+                    <div class="order-num">
+                        <div class="order-num-left">订单状态：
+                            <if condition="$order['charge_status'] eq 1">
+                                未支付
+                            </if>
+                            <if condition="$order['charge_status'] eq 2">
+                                已提交待审核
+                            </if>
+                            <if condition="$order['charge_status'] eq 3">
+                                审核通过
+                            </if>
+                            <if condition="$order['charge_status'] eq 4">
+                                审核不通过
+                            </if>
+
+
+                        </div>
+                        <div class="order-num-right"></div>
+                    </div>
+                    <div class="order-list-box margin-top-10">
+                        <if condition="$order['is_charge'] eq 2">
+                            <h3>收款方</h3>
+                            <else/>
+                            <h3>付款方</h3>
+                        </if>
+
+                        <div class="order-list">开户名：{$order.real_name}</div>
+                        <if condition="$order['is_charge'] eq 2">
+
+                            <div class="order-list">金额：{$order['charge_money']*89/100} 元</div>
+                            <else/>
+
+                            <div class="order-list">金额：{$order.charge_money} 元</div>
+                        </if>
+
+                        <div class="order-list">开户行：{$order.charge_bank}</div>
+                        <div class="order-list">支行：{$order.charge_sub_bank}</div>
+                        <div class="order-list">银行帐号：{$order.charge_bankcard}</div>
+                        <div class="order-list">代理等级：{$order.level}</div>
+                    </div>
+                    <if condition="$order['charge_status'] eq 1">
+                    <div class="order-list-box text-center">
+                        <!-- 银行卡按钮-替换图片路径 -->
+                        <img id="bank-btn" src="{$Think.ADMIN_IMG}/bank_charge.png" style="width: 40%;padding: 5px">
+                        <!-- 支付宝按钮-替换图片路径 -->
+                        <img id="zfb-btn" src="{$Think.ADMIN_IMG}/zhifubao_charge.png" style="width: 40%;padding: 5px">
+
+                    </div>
+                    </if>
+                    <input type="text" id="charge_type" class="btn-type" style="display: none" value="1" name="">
+                    <div class="order-list-box">
+                        <if condition="$order['is_charge'] eq 2">
+                            <h3>付款方</h3>
+                            <else/>
+                            <h3>收款方</h3>
+                        </if>
+                        <div class="bank">
+                            <div class="order-list">开户名：海南盛英汇电子竞技有限公司</div>
+                            <div class="order-list">开户行(支行)：中国工商银行海口和平南支行</div>
+                            <div class="order-list">银行帐号：2201020409200049910</div>
+                        </div>
+                        <div class="text-center zfb"  hidden>
+                            <img src="{$Think.ADMIN_IMG}/zfberweima.jpg" style="width: 50%;">
+                        </div>
+                        <if condition="$order['charge_status'] eq 1">
+                            <a id="fukuan" class="order-btn"><img src="{$Think.ADMIN_IMG}/order/btn.png"></a>
+                      </if>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+<!--手机页面-->
+<div class="sm_dev_div">
+    <div class="page-group">
+        <div class="page">
+            <!--导航栏-->
+            <include file="Public/nav_m" />
+
+            <div class="content">
+                <marquee style="position: fixed;max-width:640px;height: 1.6rem;width:100%;line-height: 1.6rem;text-align: center;font-size: 0.6rem;color:#fff;background: #39455a">欢迎登录盛英汇管理系统</marquee>
+                <div class="content-block">
+                    <div class="card">
+                        <img src="{$Think.ADMIN_IMG}/img/dingdan2.png" style="width:100%">
+                        <div style="position: absolute;width: 100%;height: 90%;top: 10%;">
+
+                            <div class="list-block">
+                                <ul>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">订单编号：</div>
+                                                {$order.order_num}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">订单状态</div>
+                                                <if condition="$order['charge_status'] eq 1">
+                                                    未支付
+                                                </if>
+                                                <if condition="$order['charge_status'] eq 2">
+                                                    已提交待审核
+                                                </if>
+                                                <if condition="$order['charge_status'] eq 3">
+                                                    审核通过
+                                                </if>
+                                                <if condition="$order['charge_status'] eq 4">
+                                                    审核不通过
+                                                </if>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-content-inner">
+                                        开户名：{$order.real_name}
+                                    </div>
+                                    <div class="card-content-inner">
+                                        金额：{$order.charge_money}
+                                    </div>
+                                    <div class="card-content-inner">
+                                        开户行:{$order.charge_bank}
+                                    </div>
+                                    <div class="card-content-inner">
+                                        银行账号：{$order.charge_bankcard}
+                                    </div>
+                                    <div class="card-content-inner">
+                                        代理等级：{$order.level}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-content">
+                                    <div class="card-content-inner">
+                                        开户名：海南盛英汇电子竞技有限公司
+                                    </div>
+                                    <div class="card-content-inner">
+                                        开户行：中国工商银行海口和平南支行
+                                    </div>
+                                    <div class="card-content-inner">
+                                        银行账号：2201020409200049910
+                                    </div>
+                                </div>
+                            </div>
+                            <if condition="$order['charge_status'] eq 1">
+                                <a id="fukun_m" class="button" style="margin-top:.5rem">
+                                    <img src="{$Think.ADMIN_IMG}/img/querenfukuan.png" style="width: 45%;">
+                                </a>
+                            </if>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+</body>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/jquery-3.1.0.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/bootstrap.min.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+<script type="text/javascript">
+
+
+
+
+    $(function () {
+        //        var browserWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+//		if(browserWidth < 768)
+        if(window.screen.width<=768){
+            dynamicLoadCss("{$Think.ADMIN_CSS}/sm.min.css");
+            dynamicLoadCss("{$Think.ADMIN_CSS}/sm-extend.min.css");
+            dynamicLoadCss("{$Think.ADMIN_CSS}/myPagination.css");
+            dynamicLoadJs("{$Think.ADMIN_JS}/myPagination.js");
+
+            dynamicLoadJs("{$Think.ADMIN_JS}/zepto.min.js");
+            dynamicLoadJs("{$Think.ADMIN_JS}/sm.min.js");
+            dynamicLoadJs("{$Think.ADMIN_JS}/sm-extend.min.js");
+
+
+        }
+
+
+    })
+
+    /**
+     * 动态加载JS
+     * @param {string} url 脚本地址
+     * @param {function} callback  回调函数
+     */
+    function dynamicLoadJs(url, callback) {
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = url;
+        if(typeof(callback)=='function'){
+            script.onload = script.onreadystatechange = function () {
+                if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete"){
+                    callback();
+                    script.onload = script.onreadystatechange = null;
+                }
+            };
+        }
+        head.appendChild(script);
+    }
+
+    /**
+     * 动态加载CSS
+     * @param {string} url 样式地址
+     */
+    function dynamicLoadCss(url) {
+        var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.type='text/css';
+        link.rel = 'stylesheet';
+        link.href = url;
+        head.appendChild(link);
+    }
+
+
+
+
+
+
+    $('#bank-btn').click(function () {
+        $('.bank').show();
+        $('.zfb').hide();
+        $('#charge_type').val(1);
+    })
+
+    $('#zfb-btn').click(function () {
+        $('.zfb').show();
+        $('.bank').hide();
+        $('#charge_type').val(2);
+
+    })
+
+
+
+
+
+
+
+    $('input[type=radio][name=level_id]').change(function() {
+
+        $("#coin").text(this.alt)
+
+    });
+
+
+    $("#fukuan").click(function () {
+        var order_num = $("#order_num").val();
+        var charge_type = $("#charge_type").val();
+        $.post(
+            'charge_status.html',
+            {
+                charge_type: charge_type,
+                charge_status: 2,
+                order_num : order_num
+            },
+            function (data) {
+                if (data.status == 1){
+                    alert(data.msg);
+                    window.location.reload();
+                }else {
+                    alert(data.msg);
+                }
+            }
+            ,'json'
+        )
+    })
+
+
+    $("#fukun_m").click(function () {
+        var order_num = $("#order_num").val();
+        $.post(
+            'charge_status.html',
+            {
+                charge_status: 2,
+                order_num : order_num
+            },
+            function (data) {
+                if (data.status == 1){
+                    alert(data.msg);
+                    window.location.reload();
+                }else {
+                    alert(data.msg);
+                }
+            }
+            ,'json'
+        )
+    })
+
+
+
+
+</script>
+
+</html>

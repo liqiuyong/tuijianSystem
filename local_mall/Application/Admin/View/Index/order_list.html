@@ -1,0 +1,500 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>订单信息</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/bootstrap.min.css" />
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/main.css" />
+	<script src="{$Think.ADMIN_JS}/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/new_nav.css"/>
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/gonggao.css" />
+	<script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+
+</head>
+<style>
+
+	/*分页样式*/
+
+	.page>div{
+		display: flex;
+		width: 832px;
+		color: #fff;
+		font-size: 16px;
+		font-weight: bold;
+		align-items: center;
+		justify-content: center;
+		margin-top: 40px;
+	}
+	.num , .prev ,.next ,.end,.first{
+		float: 0 0 auto;
+		height: 34px;
+		min-width: 34px;
+		border-radius: 50px;
+		background: #2e1d0b;
+		border: 2px solid #6c553b;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 18px;
+		font-weight: bold;
+		color: #fff;
+		cursor: pointer;
+		margin: 0 3px;
+	}
+
+	.next,.end{
+		transform: rotate(-180deg);
+	}
+
+	/*分页样式*/
+
+
+
+	@media only screen and (min-width: 769px){
+
+		.sm_dev_div{
+			display: none;
+		}
+
+	}
+
+	@media only screen and (max-width: 768px) {
+
+		.list-block .item-content {
+			min-height: 1.6rem;
+		}
+		.list-block .item-inner {
+			padding-top: 0rem;
+			padding-bottom: 0rem;
+			min-height: 1.6rem;
+		}
+		.modal{
+			width: 90%;
+			left: 5%;
+			margin-left: 0;
+			border: 2px solid #ffd870;
+			border-radius: 0;
+			background: #442e19;
+			min-height: 50vh;
+		}
+		.modal-inner{
+			background: #442e19;
+			border-radius: 0;
+		}
+		.modal-buttons{
+			position: absolute;
+			height: 35px;
+			width: 101.2%;
+			top: -35px;
+			left: -.6%;
+		}
+		.modal-buttons span{
+			background:  #ffd870;
+			background-repeat: no-repeat;
+			background-image: url({$Think.ADMIN_IMG}/img/cha.png);
+			background-position: 98% 9px;
+		}
+
+
+
+
+
+		.bg_dev_div{
+			display: none;
+		}
+		.sm_dev_div{
+			display: block;
+		}
+
+		caption, th {
+			text-align: center;
+		}
+		.pagination{
+			display: block;
+		}
+	}
+</style>
+<body>
+
+<div class="bg_box bg_dev_div">
+	<!--<div  class="hd_box_wrap">-->
+		<!--<div class="hd_box">-->
+
+			<!--<div class="hd-left">-->
+				<!--<a class="logo-a"><img src="{$Think.ADMIN_IMG}/new/logo.png"></a>-->
+				<!--<img src="{$Think.ADMIN_IMG}/new/zuan.png">-->
+				<!--<a href="index.html" class="color_fff">首页-</a>-->
+				<!--<span class="select-wrap1">-->
+                        <!--<select class="select1" onchange="window.location=this.value">-->
+                            <!--<option value="caiwu.html">财务信息</option>-->
+                            <!--<option value="tuijian.html">推荐列表</option>-->
+                            <!--<option value="order_list.html"  selected="selected" >订单详情</option>-->
+                            <!--<option value="baodan.html">报单记录</option>-->
+                        <!--</select>-->
+                        <!--<div class="sanjiaoxing">-->
+                            <!--<img src="{$Think.ADMIN_IMG}/new/sanjiaoxing.png">-->
+                        <!--</div>-->
+                        <!--</span>-->
+
+			<!--</div>-->
+
+			<!--<div class="hd-right">-->
+				<!--<a class="color_fff">ID：{$user.phone}</a>-->
+				<!--<a class="set"><img src="{$Think.ADMIN_IMG}/new/set.png"></a>-->
+				<!--<a class="color_fff">[退出]</a>-->
+			<!--</div>-->
+		<!--</div>-->
+
+	<!--</div>-->
+
+	<!--导航栏-->
+	<include file="Public/nav" />
+
+	<!--导航 结束/-->
+
+	<!--<div class="mian-title">-->
+		<!--&lt;!&ndash;<a class="color_fff">首页</a>-报单记录&ndash;&gt;-->
+		<!--<marquee  onmouseover=this.stop() onmouseout=this.start() behavior="scroll" direction="left" class="gonggao_text">欢迎登录盛英汇管理系统</marquee>-->
+
+	<!--</div>-->
+	<div class="asset-main">
+
+		<div class="asset-main-bd">
+
+			<div class="tab_content hide active orderDetails" >
+				<table class="customers">
+					<tr>
+						<th>
+                                <span class="select-wrap">
+                                <select class="select">
+                                    <option value ="volvo">时间</option>
+
+                                </select>
+                                 </span>
+						</th>
+						<th>
+                              <span class="select-wrap">
+                                <select class="select">
+                                    <option value ="volvo">单号</option>
+
+                                </select>
+                                 </span>
+						</th>
+						<th>
+                                <span class="select-wrap">
+                                <select class="select">
+                                    <option value ="volvo">代理等级</option>
+
+                                </select>
+                                 </span>
+						</th>
+						<th>
+                                <span class="select-wrap">
+                                <select class="select">
+                                    <option value ="volvo">状态</option>
+
+                                </select>
+                                 </span>
+						</th>
+						<th> <span class="select-wrap">
+                                <select class="select">
+                                    <option value ="volvo">金额</option>
+
+                                </select>
+                                 </span></th>
+
+
+						<th>交易类型</th>
+						<th>操作</th>
+					</tr>
+					<volist name="order" id="vo">
+
+						<if condition="$i%2 eq 1"  >
+							<tr>
+								<else/>
+							<tr class="alt">
+						</if>
+						<td>{$vo.addtime|date="Y-m-d H:i:s",###}</td>
+						<td>{$vo.order_num}</td>
+						<td>{$vo.level|default="未付款"}</td>
+						<td>
+							<if condition="$vo.charge_status eq 1">
+								未支付
+							</if>
+							<if condition="$vo.charge_status eq 2">
+								已提交待审核
+							</if>
+							<if condition="$vo.charge_status eq 3">
+								审核通过
+							</if>
+							<if condition="$vo.charge_status eq 4">
+								审核不通过
+							</if>
+						</td>
+
+						<if condition="$vo.is_charge eq 1">
+							<td>{$vo.charge_money}</td>
+						</if>
+						<if condition="$vo.is_charge eq 2">
+							<td>{$vo['charge_money']*89/100}</td>
+						</if>
+
+
+						<td>
+							<if condition="$vo.is_charge eq 1">
+								充值
+							</if>
+							<if condition="$vo.is_charge eq 2">
+								提现
+							</if>
+						</td>
+						<td>
+							<a href="charge_status.html?order_num={$vo.order_num}">查看详情</a>
+						</td>
+
+
+						</tr>
+
+
+					</volist>
+				</table>
+				<!--<div class="page-box">-->
+					<!--<a class="page-list"><img src="{$Think.ADMIN_IMG}/new/page-pre1.png"></a>-->
+					<!--<a class="page-list"><img src="{$Think.ADMIN_IMG}/new/page-pre2.png"></a>-->
+					<!--<a class="page-list">1</a>-->
+					<!--<a class="page-list">2</a>-->
+					<!--<a class="page-list">3</a>-->
+					<!--<a class="page-list">4</a>-->
+					<!--<a class="page-list">5</a>-->
+					<!--<a class="page-list">...</a>-->
+					<!--<a class="page-list reverse"><img src="{$Think.ADMIN_IMG}/new/page-pre1.png"></a>-->
+					<!--<a class="page-list reverse margin-right-20"><img src="{$Think.ADMIN_IMG}/new/page-pre2.png"></a>-->
+					<!--<div>-->
+						<!--第 <input type="text" value="1"> 页共199页-->
+					<!--</div>-->
+				<!--</div>-->
+				<div class="page">
+					{$page}
+
+
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<div class="sm_dev_div">
+	<div class="page-group">
+		<div class="page">
+			<!--导航栏-->
+			<include file="Public/nav_m" />
+
+			<div class="content">
+				<marquee style="position: fixed;max-width:640px;height: 1.6rem;width:100%;line-height: 1.6rem;text-align: center;font-size: 0.6rem;color:#fff;background: #39455a">欢迎登录盛英汇管理系统</marquee>
+				<div  class="card card-bottom"  style="margin-top: 3rem">
+					<table border="0">
+						<tr class="thead">
+							<th>时间<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+							<th>单号<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+							<th>代理等级<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+							<th>状态<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+							<th>金额<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+							<th>交易类型</th>
+							<th>操作</th>
+						</tr>
+
+
+						<volist name="order" id="vo">
+
+							<tr>
+								<th>{$vo.addtime|date="Y-m-d H:i:s",###}</th>
+								<th>{$vo.order_num}</th>
+								<th>{$vo.level|default="未付款"}</th>
+								<th>
+									<if condition="$vo.charge_status eq 1">
+										未支付
+									</if>
+									<if condition="$vo.charge_status eq 2">
+										已提交待审核
+									</if>
+									<if condition="$vo.charge_status eq 3">
+										审核通过
+									</if>
+									<if condition="$vo.charge_status eq 4">
+										审核不通过
+									</if>
+								</th>
+
+								<th>{$vo.charge_money}</th>
+
+								<th>
+									<if condition="$vo.is_charge eq 1">
+										充值
+									</if>
+									<if condition="$vo.is_charge eq 2">
+										提现
+									</if>
+								</th>
+								<th>
+									<a href="charge_status.html?order_num={$vo.order_num}">查看详情</a>
+								</th>
+
+
+							</tr>
+
+
+						</volist>
+
+
+
+
+						<!--<tr>-->
+							<!--<th>201</th>-->
+							<!--<th>213231</th>-->
+							<!--<th>省级</th>-->
+							<!--<th>有效</th>-->
+							<!--<th>400</th>-->
+							<!--<th>红积分</th>-->
+							<!--<th>积分商城</th>-->
+						<!--</tr>-->
+						<!--<tr>-->
+							<!--<th>201</th>-->
+							<!--<th>213231</th>-->
+							<!--<th>省级</th>-->
+							<!--<th>有效</th>-->
+							<!--<th>400</th>-->
+							<!--<th>红积分</th>-->
+							<!--<th>积分商城</th>-->
+						<!--</tr>-->
+						<!--<tr>-->
+							<!--<th>201</th>-->
+							<!--<th>213231</th>-->
+							<!--<th>省级</th>-->
+							<!--<th>有效</th>-->
+							<!--<th>400</th>-->
+							<!--<th>红积分</th>-->
+							<!--<th>积分商城</th>-->
+						<!--</tr>-->
+						<!--<tr>-->
+							<!--<th>201</th>-->
+							<!--<th>213231</th>-->
+							<!--<th>省级</th>-->
+							<!--<th>有效</th>-->
+							<!--<th>400</th>-->
+							<!--<th>红积分</th>-->
+							<!--<th>积分商城</th>-->
+						<!--</tr>-->
+					</table>
+				</div>
+				<!--<div id="pagination" class="pagination"></div>-->
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+
+<script type="text/javascript" src="{$Think.ADMIN_JS}/jquery-3.1.0.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/bootstrap.min.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+
+<script type="text/javascript">
+
+    $(function () {
+        //        var browserWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+//		if(browserWidth < 768)
+        if(window.screen.width<=768){
+            dynamicLoadCss("{$Think.ADMIN_CSS}/sm.min.css");
+            dynamicLoadCss("{$Think.ADMIN_CSS}/sm-extend.min.css");
+            dynamicLoadCss("{$Think.ADMIN_CSS}/myPagination.css");
+            dynamicLoadJs("{$Think.ADMIN_JS}/myPagination.js");
+
+            dynamicLoadJs("{$Think.ADMIN_JS}/zepto.min.js");
+            dynamicLoadJs("{$Think.ADMIN_JS}/sm.min.js");
+            dynamicLoadJs("{$Think.ADMIN_JS}/sm-extend.min.js");
+
+
+        }
+
+
+    })
+
+    /**
+     * 动态加载JS
+     * @param {string} url 脚本地址
+     * @param {function} callback  回调函数
+     */
+    function dynamicLoadJs(url, callback) {
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = url;
+        if(typeof(callback)=='function'){
+            script.onload = script.onreadystatechange = function () {
+                if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete"){
+                    callback();
+                    script.onload = script.onreadystatechange = null;
+                }
+            };
+        }
+        head.appendChild(script);
+    }
+
+    /**
+     * 动态加载CSS
+     * @param {string} url 样式地址
+     */
+    function dynamicLoadCss(url) {
+        var head = document.getElementsByTagName('head')[0];
+        var link = document.createElement('link');
+        link.type='text/css';
+        link.rel = 'stylesheet';
+        link.href = url;
+        head.appendChild(link);
+    }
+
+
+
+
+
+
+    $.init();
+
+    Zepto(".open-panel").click(function(){
+        Zepto(".close-panel").show();
+        Zepto(".open-panel").hide();
+    });
+    Zepto(".close-panel").click(function(){
+        Zepto(".open-panel").show();
+        Zepto(".close-panel").hide();
+    });
+
+</script>
+<script>
+    window.onload = function () {
+        new myPagination({
+            id: 'pagination',
+            curPage:1, //初始页码
+            pageTotal: 50, //总页数
+            pageAmount: 10,  //每页多少条
+            dataTotal: 500, //总共多少条数据
+            pageSize: 5, //可选,分页个数
+            showPageTotalFlag:true, //是否显示数据统计
+            showSkipInputFlag:true, //是否支持跳转
+            getPage: function (page) {
+                //获取当前页数
+                console.log(page);
+            }
+        })
+
+    }
+</script>
+</body>
+</html>

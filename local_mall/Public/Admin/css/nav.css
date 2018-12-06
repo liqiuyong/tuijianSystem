@@ -1,0 +1,18 @@
+		.navbar-default{
+			/*background-image: url(images/nav_bg.png);*/
+			background: #0c112e;
+			margin-bottom: 0px;
+			border-left: none;
+			border-right:none;
+		}
+
+		 /*.navbar-nav li:hover{*/
+		 	/*background: red;*/
+		 /*}*/
+		 
+		 .navbar-right{
+		 	padding-right: 20%;
+		 }
+		 .navbar-right li{
+		 	padding: 0 20px;
+		 }

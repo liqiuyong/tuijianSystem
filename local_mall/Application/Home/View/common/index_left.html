@@ -1,0 +1,15 @@
+
+    <div class="admin-sidebar">
+        <ul class="am-list admin-sidebar-list">
+            <li><a href="{:U('index')}"><span class="am-icon-home"></span> 首页<if condition="ACTION_NAME eq 'index'"><span class='am-icon-star am-fr am-margin-right admin-icon-yellow'></span></if></a></li>
+
+
+            <li><a href="{:U('user_manager')}" class="am-cf"><span class="am-icon-check"></span> 用户信息<if condition="ACTION_NAME eq 'user_manager'"><span class='am-icon-star am-fr am-margin-right admin-icon-yellow'></span></if></a></li>
+            <li><a href="{:U('charge_manager',array('is_charge'=>1))}"><span class="am-icon-puzzle-piece"></span> 充值管理<if condition="(ACTION_NAME eq 'charge_manager') AND  ($_GET['is_charge'] eq 1)"><span class='am-icon-star am-fr am-margin-right admin-icon-yellow'></span></if></a></li>
+            <li><a href="{:U('charge_manager',array('is_charge'=>2))}"><span class="am-icon-table"></span>提款申请<if condition="ACTION_NAME eq 'charge_manager' AND $_GET['is_charge'] eq 2"><span class='am-icon-star am-fr am-margin-right admin-icon-yellow'></span></if></a></li>
+            <li><a href=""><span class="am-icon-pencil-square-o"></span>商城配置 </a></li>
+            <li><a href=""><span class="am-icon-pencil-square-o"></span> 道具商城 </a></li>
+
+            <li><a href="index.php?g=admin&c=user&a=checkout"><span class="am-icon-sign-out"></span> 注销</a></li>
+        </ul>
+    </div>

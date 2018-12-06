@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>联系客服</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm.min.css">
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm-extend.min.css">
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/myPagination.css">
+	<script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+
+</head>
+<style type="text/css">
+
+
+</style>
+
+<body>
+<div class="page-group">
+	<div class="page">
+		<!--导航栏-->
+		<include file="Public/nav_m" />
+
+		<div class="content">
+			<include file="Public/marquee_m" />
+
+			<div class="content-block">
+
+				<div class="card" style="background: transparent;">
+					<img src="{$Think.ADMIN_IMG}/img/FAQ.png" style="width:100%">
+					<div style="position: absolute;width: 100%;height: 90%;top: 10%;padding: .75rem;font-size: 1rem;">
+						<!--<div>A：如何充值？</div>-->
+						<!--<div>B：点击财务按钮，进入资产信息界面，点击充值按钮进行充值。</div>-->
+						<div>Q：我该如何提现呢？</div>
+						<div>A：提现需要先在网页右上角的设置内进行二级密码的设置。之后点击财务按钮，进入资产信息界面，点击提现按钮进行提现</div>
+
+						<div>Q：我该如何充值？</div>
+						<div>A：点击财务按钮，进入资产信息界面，点击充值按钮进行充值。</div>
+
+						<div>Q：我订单提交了找不到记录，怎么办?</div>
+						<div>A：您可以刷新后再记录里查找，若没有记录可以选择再次提交，或者联系客服。</div> 
+						<!--<div>Q：如果商城内的商品缺货，我又想兑换怎么办？</div>-->
+						<!--<div>A：1. 热门商品可能短暂缺货，您可以点击客服按钮，留下您的联系方式及想要的商品，有货后我们将通知您。</div>-->
+
+						<!--<div>Q：我在拍卖行购买的物品为什么在游戏中没有出现?</div>-->
+						<!--<div>A: 1. 如果遇交易量较大的时，可能会出现延迟的情况。请耐心等待并留意游戏内的系统邮件</div>-->
+
+
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script type='text/javascript' src='{$Think.ADMIN_JS}/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/geren.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+
+<script type="text/javascript">
+
+    $.init();
+
+    Zepto(".open-panel").click(function(){
+        Zepto(".close-panel").show();
+        Zepto(".open-panel").hide();
+    });
+    Zepto(".close-panel").click(function(){
+        Zepto(".open-panel").show();
+        Zepto(".close-panel").hide();
+    });
+
+</script>
+
+</body>
+</html>

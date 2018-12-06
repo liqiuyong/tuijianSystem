@@ -1,0 +1,94 @@
+.pagination ul {
+    list-style: none;
+    padding-left: 0;
+    text-align: center;
+}
+
+.pagination ul li {
+	background-image: url(../images/img/konganniu.png);
+	background-size: 28px 28px;
+	background-repeat: no-repeat;
+    vertical-align: top;
+    display: inline-block;
+    font-size: 14px;
+    min-width: 28px;
+    min-height: 28px;
+    line-height: 28px;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+    color: #fff;
+    border-radius: 50%;
+    margin: 0 3px;
+    height: 30px;
+}
+.pagination li img{
+	width: 28px;
+	height: 28px;
+}
+
+.pagination ul li:hover {
+}
+
+.pagination  li.active {
+}
+
+.pagination li.disabled {
+    cursor: not-allowed;
+}
+.pagination li.totalPage {
+    background: transparent;
+    cursor: default;
+    border: none;
+    padding: 0 6px;
+}
+
+/*.pagination li.totalPage:hover {
+    transform: none;
+    background-color: #ffffff;
+}*/
+
+
+.pagination li input {
+    -webkit-appearance: none;
+    background-color: #694D32;;
+    background-image: none;
+    border: 1px solid #694D32;;
+    box-sizing: border-box;
+    color: #fff;
+    text-align: center;
+    display: inline-block;
+    font-size: inherit;
+    outline: none;
+    padding: 3px 5px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 40px;
+    height: 25px;
+    margin: 0 6px;
+}
+
+.pagination{
+    user-select: none;
+        position: fixed;
+    width: 100%;
+    bottom: 2.5rem;
+}
+.card-bottom{
+    margin-bottom: 120px;
+    min-height: 10rem;
+    background: #503a2dc7
+}
+
+.pagination ul:nth-child(2){
+    border-radius: 6px;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+

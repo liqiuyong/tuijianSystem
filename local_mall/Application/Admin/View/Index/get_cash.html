@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>提现</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/new_nav.css"/>
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/gonggao.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/index.css"/>
+	</head>
+	<style>
+
+		.table,.table>tbody>tr>td,.table>thead>tr>th{
+        	border:0px;
+        	/*text-align: center;*/
+        }
+        .table{
+        	table-layout：fixed;
+        	margin: 20px 0;
+        }
+        
+        td{
+        	
+        	word-wrap:break-word;word-break:break-all;
+        }
+        
+        tbody tr:nth-child(odd){background:#674527;}
+        
+        .order-list
+        {
+			background-image: url({$Think.ADMIN_IMG}/tixian_bg.png);
+			background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+			margin-bottom: 20px;
+
+		}
+		
+		
+		input{
+			color: white;
+			display: inline-block;
+			background-color:rgba(255,255,255,0.2);
+			border: none;
+		}
+		
+		
+		.dengji-ul{
+			padding-left: 20px;
+		}
+		
+		.dengji-ul li{
+			list-style: none;
+			float: left;
+			padding: 0 10px;
+		}
+
+
+		@media only screen and (min-width: 769px){
+
+			.sm_dev_div{
+				display: none;
+			}
+
+		}
+
+		@media only screen and (max-width: 768px) {
+			.bg_dev_div{
+				display: none;
+			}
+			.sm_dev_div{
+				display: block;
+			}
+
+			.card .list-block li {margin: .2rem 0;}
+			.col-33{margin: .2rem 0}
+			.row {padding: .1rem .75rem;}
+		}
+
+
+	</style>
+	<body style="">
+
+	<div class="bg_dev_div">
+
+	<!--顶部导航区域-->
+	<!--导航栏-->
+	<include file="Public/nav" />
+
+	<!--公告栏-->
+	<!--<div class="gonggao">-->
+		<!--<marquee  onmouseover=this.stop() onmouseout=this.start() behavior="scroll" direction="left" class="gonggao_text">欢迎登录盛英汇管理系统</marquee>-->
+
+	<!--</div>-->
+		 
+		 <!--内容区域-->
+		 <div class="container main" style="max-width: 600px;">
+
+
+				<div class="main-cont text-center" style="width: 100%;">
+					
+					
+					<div class="order-list" style="margin-top: 30px;padding-top: 5%;position: relative;">
+						
+						<!--<div style="position: relative;">
+							<img src="{$Think.ADMIN_IMG}/dingdang_bg_1.png" width="100%" />
+							
+							<div style="position: absolute; top: 0;left: 5%;width: 10%;">
+								<a href="javascript:history.back(-1)"><img src="{$Think.ADMIN_IMG}/fanhui.png" width="100%"></a>
+							</div>
+						</div>-->
+						
+						<div style="position: absolute; top: 2%;left: 5%;width: 2%;">
+								<a href="javascript:history.back(-1)"><img src="{$Think.ADMIN_IMG}/fanhui_2.png" width="100%"></a>
+						</div>
+
+						<form method="post" id="form1">
+
+							<table class="table" style="" >
+								<thead>
+							
+								</thead>
+								<tbody class="h4">
+
+								<tr class="h3">
+									<td>余额:</td><td><span id="" style="color: red;">{$wallet['active_money'] | default=0}</span> 元</td>
+
+								</tr>
+
+
+								<tr>
+									<td>提现金额</td>
+									<td><input type="text" name="charge_money" id="" value="" /></td>
+								</tr>
+								<tr class="h5">
+									<td colspan="2" style="color: red">* 提现金额必须是100的整数倍,提现需扣除所得税11% *</td>
+								</tr>
+
+								<tr>
+									<td>银行卡号:</td><td><input type="text" name="bank_card" id="" value="<if condition="$user">{$user['bank_card']}</if>" /></td>
+								</tr>
+								<tr>
+									<td>开户行:</td><td><input type="text" name="bank_name" id="" value="<if condition="$user">{$user['bank_name']}</if>" /></td>
+								</tr>
+								<tr>
+									<td>支行:</td><td><input type="text" name="sub_bank_name" id="" value="<if condition="$user">{$user['sub_bank_name']}</if>" /></td>
+								</tr>
+								<tr>
+									<td>姓名:</td><td><input type="text" name="real_name" id="" value="<if condition="$user">{$user['real_name']}</if>" /></td>
+								</tr>
+								<tr>
+									<td>手机号:</td>
+									<td><input type="text" name="phone" id="" value="<if condition="$user">{$user['phone']}</if>" maxlength="11"/></td>
+								</tr>
+								<!--<tr>-->
+									<!--<td>身份证号:</td><td><input type="text" name="real_card" id="" value="<if condition="$user">{$user['real_card']}</if>" /></td>-->
+								<!--</tr>-->
+
+								<tr>
+									<td>交易密码:</td><td><input type="text" name="tr_password" id="" value="" /></td>
+								</tr>
+
+
+								</tbody>
+							</table>
+							<div style="text-align: center;padding:0 10px 10px 0;">
+								<!--<button type="submit" class="btn" style="padding: 0;border: none;"><img src="{$Think.ADMIN_IMG}/dingdanshengcheng.png"/></button>-->
+								<button type="submit" class="" style="padding: 5px 10px;color: #5d3212;border: none;background-color: rgba(0, 0, 0, 0);background-image: url('{$Think.ADMIN_IMG}/new/btn.png');background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;">订单生成</button>
+
+							</div>
+
+						</form>
+
+
+
+					</div>				
+
+		
+				
+				</div>
+
+
+
+		 
+		 
+		 </div>
+
+	</div>
+
+
+
+	<div class="sm_dev_div">
+		<div class="page-group">
+			<div class="page">
+				<!--导航栏-->
+				<include file="Public/nav_m" />
+
+				<div class="content">
+					<marquee style="position: fixed;max-width:640px;height: 1.6rem;width:100%;line-height: 1.6rem;text-align: center;font-size: 0.6rem;color:#fff;background: #39455a">欢迎登录盛英汇管理系统</marquee>
+					<div class="content-block">
+
+						<div class="card">
+							<img src="{$Think.ADMIN_IMG}/img/tixian2.png" style="width:100%">
+							<div style="position: absolute;width: 100%;height: 90%;top: 10%;">
+								<form id="form2">
+								<div class="list-block">
+									<ul>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">姓名：</div>
+													<div class="item-input">
+														<input type="text" name="real_name"  value="<if condition="$user">{$user['real_name']}</if>">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">银行卡号：</div>
+													<div class="item-input">
+														<input type="text" name="bank_card"  value="<if condition="$user">{$user['bank_card']}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">开户行：</div>
+													<div class="item-input" >
+														<input type="text" name="bank_name" value="<if condition="$user">{$user['bank_name']}</if>" />
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">身份证号：</div>
+													<div class="item-input">
+														<input type="text" name="real_card" value="<if condition="$user">{$user['real_card']}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">余额：</div>
+													<div class="item-input">
+														<input type="text" value="{$wallet['active_money'] | default=0}元" disabled>
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">提现金额：</div>
+													<div class="item-input">
+														<input type="text" name="charge_money" value="">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">交易密码：</div>
+													<div class="item-input" >
+														<input type="text" name="tr_password">
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								</form>
+								<a href="#" class="button">
+									<img onclick="get_cash()" src="{$Think.ADMIN_IMG}/img/dingdanshengcheng.png" style="width: 45%;">
+								</a>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+
+	</body>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/jquery-3.1.0.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+	<script type="text/javascript">
+		
+
+        $('input[type=radio][name=level_id]').change(function() {
+
+            $("#coin").text(this.alt)
+
+        });
+
+
+
+        $('form').submit(function () {
+
+            $.post(
+				'get_cash.html',
+
+                $('#form1').serialize(),
+				function (data) {
+//				    console.log(data);
+				    if (data.status == 1){
+                        alert(data.msg);
+						window.location.href="charge_status.html?order_num="+data.order_num;
+                    }else if (data.status == 2){
+                        alert(data.msg);
+                        window.location.href="geren.html";
+					}
+
+                    else {
+                        alert(data.msg);
+
+                    }
+				}
+				, 'json'
+
+            )
+            return false;
+
+        })
+
+
+
+	
+	</script>
+
+	<script type="text/javascript">
+
+        $(function () {
+
+
+
+            //        var browserWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+//		if(browserWidth < 768)
+            if(window.screen.width<=768){
+                dynamicLoadCss("{$Think.ADMIN_CSS}/sm.min.css");
+                dynamicLoadCss("{$Think.ADMIN_CSS}/sm-extend.min.css");
+                dynamicLoadCss("{$Think.ADMIN_CSS}/myPagination.css");
+                dynamicLoadJs("{$Think.ADMIN_JS}/myPagination.js");
+
+                dynamicLoadJs("{$Think.ADMIN_JS}/zepto.min.js");
+                dynamicLoadJs("{$Think.ADMIN_JS}/sm.min.js");
+                dynamicLoadJs("{$Think.ADMIN_JS}/sm-extend.min.js");
+                refresh();
+
+            }
+
+
+
+        })
+
+
+
+
+        function refresh(){
+            url = location.href; //把当前页面的地址赋给变量 url
+            //分切变量 url 分隔符号为 "#"
+            if( url.indexOf("#") == -1){ //如果url后没有#
+                url += "#"; //加入 #
+                self.location.replace(url); //刷新页面
+            }
+        }
+
+        /**
+         * 动态加载JS
+         * @param {string} url 脚本地址
+         * @param {function} callback  回调函数
+         */
+        function dynamicLoadJs(url, callback) {
+            var head = document.getElementsByTagName('head')[0];
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = url;
+            if(typeof(callback)=='function'){
+                script.onload = script.onreadystatechange = function () {
+                    if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete"){
+                        callback();
+                        script.onload = script.onreadystatechange = null;
+                    }
+                };
+            }
+            head.appendChild(script);
+        }
+
+        /**
+         * 动态加载CSS
+         * @param {string} url 样式地址
+         */
+        function dynamicLoadCss(url) {
+            var head = document.getElementsByTagName('head')[0];
+            var link = document.createElement('link');
+            link.type='text/css';
+            link.rel = 'stylesheet';
+            link.href = url;
+            head.appendChild(link);
+        }
+
+
+
+
+
+
+	</script>
+	<script type="text/javascript">
+
+        //        $.init();
+
+        Zepto(".open-panel").click(function(){
+            Zepto(".close-panel").show();
+            Zepto(".open-panel").hide();
+        });
+        Zepto(".close-panel").click(function(){
+            Zepto(".open-panel").show();
+            Zepto(".close-panel").hide();
+        });
+
+	</script>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>个人</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/new_nav.css"/>
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/index.css"/>
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/gonggao.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/geren.css"/>
+
+	</head>
+	<style>
+
+		body{
+			max-width: 100%;
+		}
+
+		.right-div{
+			background-image: url({$Think.ADMIN_IMG}/1.png);
+			padding: 5px 20px;
+		}
+
+
+		
+        
+	</style>
+	<body style="">
+
+	<div class="bg_dev_div">
+
+		<!--导航栏-->
+		<include file="Public/nav" />
+
+		<!--导航 结束/-->
+
+	<!--公告栏-->
+	<!--<div class="gonggao">-->
+		<!--<marquee  onmouseover=this.stop() onmouseout=this.start() behavior="scroll" direction="left" class="gonggao_text">欢迎登录盛英汇管理系统</marquee>-->
+
+	<!--</div>-->
+		 
+		 <!--内容区域-->
+		 <div class="container main" style="padding-top: 10px">
+
+			<!--内容区域-->
+			<div class="content">
+				
+				<div class="row">
+					<div class="col-xs-4">
+						<span class="nichen-div">个人昵称: {$user['phone']}</span>
+					</div>
+					<if condition="$user['is_checked'] eq 2">
+						<div class="col-xs-8">
+							<span style="color: red;font-size: 24px;font-weight: bold">您当前个人信息不完整,请先完善个人信息!</span>
+						</div>
+
+					</if>
+
+
+				</div>
+				<div class="row">
+					
+					<!--左侧导航-->
+					<div class="col-xs-3 col-sm-3">
+						
+						<!--<ul class=" left-nav">
+							<li><img src="{$Think.ADMIN_IMG}/shenfenrenzheng-h.png" width="100%"/></li>
+							<li><a href="mimaxiugai.html"><img src="{$Think.ADMIN_IMG}/mimaxiugai.png" width="100%"/></a></li>
+							<li><a href="jiaoyimimaxiugai.html"><img src="{$Think.ADMIN_IMG}/jiaoyimima.png" width="100%"/></a></li>
+							<li><a href="kefulianxi.html"><img src="{$Think.ADMIN_IMG}/kefulianxi.png" width="100%"/></a></li>
+							<li><a href="faq.html"><img src="{$Think.ADMIN_IMG}/FAQ.png" width="100%"/></a></li>
+						</ul>-->
+						
+						<ul class="left-nav">
+							<li><img src="{$Think.ADMIN_IMG}/s1-h.png" width="100%"/></li>
+							<if condition="$user['is_checked'] eq 1">
+								<li><a href="mimaxiugai.html"><img src="{$Think.ADMIN_IMG}/m1.png" width="100%"/></a></li>
+								<li><a href="jiaoyimimaxiugai.html"><img src="{$Think.ADMIN_IMG}/j1.png" width="100%"/></a></li>
+								<li><a href="kefulianxi.html"><img src="{$Think.ADMIN_IMG}/k1.png" width="100%"/></a></li>
+								<li><a href="faq.html"><img src="{$Think.ADMIN_IMG}/f1.png" width="100%"/></a></li>
+							</if>
+						</ul>
+						
+						
+					</div>
+					
+					<!--右侧内容显示-->
+
+					<div class="col-xs-offset-1 col-xs-8 col-sm-offset-1 col-sm-5">
+
+						<div class="right-div">
+							
+							<!--<form id="myform" action="{:U('upload')}" enctype="multipart/form-data" method="post" >-->
+
+								<table class="table">
+									<thead>
+									<tr>
+										<th></th>
+										<th></th>
+									</tr>
+									</thead>
+									<if>
+											<!--<tr class="text-center">-->
+												<!--<td class="">-->
+													<!--上传身份证正面:-->
+													<!--<div class="center-block real_card_bg pic1" style="width: 150px;height: 100px;">-->
+
+														<!--<if condition="$pic1">-->
+															<!--<input type="file" name="uploadfile[]" id="file" multiple="multiple" style="display: none;width: 100%;height: 100%;opacity: 0;"/>-->
+															<!--<img id="img1" src="{$pic1}" width="100%" height="100%" >-->
+															<!--<else />-->
+															<!--<input type="file" name="uploadfile[]" id="file" multiple="multiple" style="display: inline-block;width: 100%;height: 100%;opacity: 0;"/>-->
+															<!--<img id="img1" src="" width="100%" height="100%" hidden>-->
+														<!--</if>-->
+													<!--</div>-->
+												<!--</td>-->
+												<!--<td>-->
+													<!--上传身份证反面:-->
+													<!--<div class="center-block real_card_bg pic2" style="width: 150px;height: 100px;">-->
+														<!--<if condition="$pic2">-->
+															<!--<input type="file" name="uploadfile[]" id="file2" multiple="multiple" style="display: none;width: 100%;height: 100%;opacity: 0;"/>-->
+															<!--<img id="img2" src="{$pic2}" width="100%" height="100%" >-->
+															<!--<else />-->
+															<!--<input type="file" name="uploadfile[]" id="file2" multiple="multiple" style="display: inline-block;width: 100%;height: 100%;opacity: 0;"/>-->
+															<!--<img id="img2" src="" width="100%" height="100%" hidden>-->
+														<!--</if>-->
+													<!--</div>-->
+												<!--</td>-->
+											<!--</tr>-->
+										<!--<tr>-->
+											<!--<th>上传银行卡信息</th>-->
+											<!--<th></th>-->
+										<!--</tr>-->
+										<tr>
+											<td>姓名:</td>
+											<td><input type="text" name="real_name" id="real_name" value="<if condition="$user">{$user.real_name}</if>"/></td>
+										</tr>
+
+
+										<tr>
+											<td>身份证号:</td>
+											<td><input type="text" name="real_card" id="real_card" value="<if condition="$user">{$user.real_card}</if>" </td>
+										</tr>
+										<if condition="$user.tr_password eq null">
+											<tr>
+												<td>交易密码设置:</td>
+												<td><input type="password" name="tr_password" id="tr_password"> </td>
+											</tr>
+										</if>
+										<tr>
+											<td>银行卡号:</td>
+											<td><input type="text" name="bank_card" id="bank_card" value="<if condition="$user">{$user.bank_card}</if>" /></td>
+										</tr>
+
+										<tr>
+											<td>开户行:</td>
+											<td><input type="text" name="bank_name" id="bank_name" value="<if condition="$user">{$user.bank_name}</if>" /></td>
+										</tr>
+											<tr>
+												<td>支行:</td>
+												<td><input type="text" name="sub_bank_name" id="sub_bank_name" value="<if condition="$user">{$user.sub_bank_name}</if>" /></td>
+											</tr>
+
+								   </tbody>
+
+								</table>
+							<!--</form>-->
+							<div id="info" style="color: red"></div>
+							<div class="" style="text-align: center;padding:0 10px 10px 0;">
+								<if condition="$user['is_checked'] eq 2">
+									<button id="sub-btn" class="btn" style="padding: 0;border: none;"><img src="{$Think.ADMIN_IMG}/tijiao_btn.png"/></button>
+
+									<else/>
+									<button id="sub-btn" class="btn" style="padding: 0;border: none;"><img src="{$Think.ADMIN_IMG}/xiugai_btn.png"/></button>
+
+								</if>
+
+							</div>
+
+							
+						</div>
+
+
+					</div>
+											
+					
+				</div>
+							
+			</div>
+			
+		 
+		 </div>
+	</div>
+
+	<div class="sm_dev_div">
+		<div class="page-group">
+			<div class="page">
+				<!--导航栏-->
+				<include file="Public/nav_m" />
+
+				<div class="content">
+					<marquee style="position: fixed;max-width:640px;height: 1.6rem;width:100%;line-height: 1.6rem;text-align: center;font-size: 0.6rem;color:#fff;background: #39455a">欢迎登录盛英汇管理系统</marquee>
+					<div class="content-block">
+
+						<div class="card">
+							<img src="{$Think.ADMIN_IMG}/img/shenfenrenzheng.png" style="width:100%">
+							<div style="position: absolute;width: 100%;height: 90%;top: 10%;">
+								<div class="row text-center">
+									<div class="col-50">
+										上传身份证正面
+										<div>
+											<img src="{$Think.ADMIN_IMG}/img/xukuang.png" style="width: 69%;background: #fff;padding: 5px;border-radius: 8px;margin: 10px 0;">
+										</div>
+									</div>
+									<div class="col-50">
+										上传身份证反面
+										<div>
+											<img src="{$Think.ADMIN_IMG}/img/xukuang.png" style="width: 69%;background: #fff;padding: 5px;border-radius: 8px;margin: 10px 0;">
+										</div>
+									</div>
+								</div>
+
+								<div class="list-block">
+									<ul>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">姓名：</div>
+													<div class="item-input">
+														<input id="real_name_2" type="text" value="<if condition="$user">{$user.real_name}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">身份证号：</div>
+													<div class="item-input">
+														<input id="real_card_2" type="text" value="<if condition="$user">{$user.real_card}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">银行卡号：</div>
+													<div class="item-input">
+														<input id="bank_card_2" type="text" value="<if condition="$user">{$user.bank_card}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">银行：</div>
+													<div class="item-input">
+														<input id="bank_name_2" type="text" value="<if condition="$user">{$user.bank_name}</if>" >
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<a onclick="sub_geren()" class="button">
+									<img  id="sub-btn2" src="{$Think.ADMIN_IMG}/img/tijiao.png" style="width: 45%;">
+								</a>
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+
+	</body>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/jquery-3.1.0.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/geren.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+	<script>
+        function browserRedirect() {
+            var sUserAgent = navigator.userAgent.toLowerCase();
+            var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+            var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+            var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+            var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+            var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+            var bIsAndroid = sUserAgent.match(/android/i) == "android";
+            var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+            var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+            if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ){
+//            var path=window.location.search;
+//            window.location.href='index.html?'+path;
+
+            }else{
+                var path=window.location.search;
+                window.location.href='geren_m.html?'+path;
+            }
+        }
+        browserRedirect();
+	</script>
+	<script type="text/javascript">
+
+
+
+        $(function () {
+
+//            if(window.screen.width>768){
+//
+//                dynamicLoadJs("{$Think.ADMIN_JS}/bootstrap.min.js");
+//
+//            }
+            if(window.screen.width<=768){
+                dynamicLoadCss("{$Think.ADMIN_CSS}/sm.min.css");
+                dynamicLoadCss("{$Think.ADMIN_CSS}/sm-extend.min.css");
+                dynamicLoadCss("{$Think.ADMIN_CSS}/myPagination.css");
+                dynamicLoadJs("{$Think.ADMIN_JS}/myPagination.js");
+
+                dynamicLoadJs("{$Think.ADMIN_JS}/zepto.min.js");
+                dynamicLoadJs("{$Think.ADMIN_JS}/sm.min.js");
+                dynamicLoadJs("{$Think.ADMIN_JS}/sm-extend.min.js");
+
+
+            }
+
+
+
+
+
+
+            //提交按钮
+			$("#sub-btn").click(function () {
+	//                alert(123);
+				var img1 = $("#img1").attr('src');
+				var img2 = $("#img2").attr('src');
+				var real_name = $("#real_name").val();
+				var real_card = String($("#real_card").val());
+
+				var bank_name = $("#bank_name").val();
+				var sub_bank_name = $("#sub_bank_name").val();
+				var bank_card = $("#bank_card").val();
+				var tr_password = $("#tr_password").val();
+
+
+				$.post(
+					"geren.html",
+					{
+						img1 : img1,
+						img2 : img2,
+						real_card : real_card,
+						real_name : real_name,
+						bank_name : bank_name,
+                        sub_bank_name : sub_bank_name,
+						bank_card : bank_card,
+                        tr_password : tr_password
+					},
+					function (data) {
+//                        $("#info").html(data);
+						if (data.status == 1){
+							alert(data.msg);
+							window.location.href = "./index.html";
+						}else {
+							$("#info").html(data.msg);
+						}
+					}
+					,'json'
+				)
+
+			})
+
+
+
+			//		图片1上传
+			$("#file").change(function(){
+				$("#info").html("");
+				var formdata = new FormData;
+				//把jQuery对象转成js对象  .get(0)
+				var dataArr = $('#file').get(0).files;
+
+				for (var i=0; i<dataArr.length; i++){
+					formdata.append('myfiles['+i+']',dataArr[i]);
+				}
+				$.ajax({
+					url:"upload_img.html",
+					type:"POST",
+					data:formdata,
+					contentType:false,
+					processData:false,
+					success:function(data){
+						$("#info").html(data);
+						if (data.status == 1){
+							console.log(data.msg);
+							console.log(data.src);
+							$('.pic1').css( "background-image","url("+data.src+")");
+//							$("#file").hide();
+//							$("#img1").attr('src',data.src);
+//							$("#img1").show();
+						}else{
+							console.log(data.msg);
+							$("#info").text("上传存在错误1");
+						}
+
+					},
+					error:function () {
+						$("#info").html('上传存在错误2');
+					},
+					dataType:"json"
+				});
+
+			})
+
+
+			//		图片2上传
+			$("#file2").change(function(){
+				$("#info").html("");
+				var formdata = new FormData;
+				//把jQuery对象转成js对象  .get(0)
+				var dataArr = $('#file2').get(0).files;
+
+				for (var i=0; i<dataArr.length; i++){
+					formdata.append('myfiles_2['+i+']',dataArr[i]);
+				}
+				$.ajax({
+					url:"upload_img.html",
+					type:"POST",
+					data:formdata,
+					contentType:false,
+					processData:false,
+					success:function(data){
+						$("#info").html(data);
+						if (data.status == 1){
+							console.log(data.msg);
+							console.log(data.src);
+                            $('.pic2').css( "background-image","url("+data.src+")");
+//							$("#file2").hide();
+//							$("#img2").attr('src',data.src);
+//							$("#img2").show();
+						}else{
+							console.log(data.msg);
+							$("#info").text("上传存在错误1");
+						}
+
+					},
+					error:function () {
+						$("#info").html('上传存在错误2');
+					},
+					dataType:"json"
+				});
+
+			})
+
+
+        })
+
+
+		function alert_check(){
+            alert("请先完善个人信息!");
+            return false;
+		}
+
+
+
+
+
+
+        /**
+         * 动态加载JS
+         * @param {string} url 脚本地址
+         * @param {function} callback  回调函数
+         */
+        function dynamicLoadJs(url, callback) {
+            var head = document.getElementsByTagName('head')[0];
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = url;
+            if(typeof(callback)=='function'){
+                script.onload = script.onreadystatechange = function () {
+                    if (!this.readyState || this.readyState === "loaded" || this.readyState === "complete"){
+                        callback();
+                        script.onload = script.onreadystatechange = null;
+                    }
+                };
+            }
+            head.appendChild(script);
+        }
+
+        /**
+         * 动态加载CSS
+         * @param {string} url 样式地址
+         */
+        function dynamicLoadCss(url) {
+            var head = document.getElementsByTagName('head')[0];
+            var link = document.createElement('link');
+            link.type='text/css';
+            link.rel = 'stylesheet';
+            link.href = url;
+            head.appendChild(link);
+        }
+
+	
+	</script>
+	<script type="text/javascript">
+
+        $.init();
+
+        Zepto(".open-panel").click(function(){
+            Zepto(".close-panel").show();
+            Zepto(".open-panel").hide();
+        });
+        Zepto(".close-panel").click(function(){
+            Zepto(".open-panel").show();
+            Zepto(".close-panel").hide();
+        });
+
+	</script>
+
+</html>

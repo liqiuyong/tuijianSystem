@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>充值</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm.min.css">
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm-extend.min.css">
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/myPagination.css">
+    <script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+
+</head>
+
+<body>
+<style type="text/css">
+    .list-block .item-content {
+        height: 1rem;
+        min-height: 1rem;
+    }
+    .card .list-block li {
+        margin: 0;
+    }
+    .card {
+        background: rgba(46, 66, 46, 0.2);
+    }
+    .card-content-inner {
+        padding: .30rem .75rem .2rem;
+
+    }
+</style>
+
+
+    <div class="page-group">
+        <div class="page">
+            <!--导航栏-->
+            <include file="Public/nav_m" />
+
+            <div class="content">
+                <include file="Public/marquee_m" />
+                <div class="content-block">
+                    <div class="card">
+                        <img src="{$Think.ADMIN_IMG}/img/dingdan2.png" style="width:100%">
+                        <div style="position: absolute;width: 100%;height: 90%;top: 10%;">
+
+                            <div class="list-block">
+                                <ul>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">订单编号：</div>
+                                                {$order.order_num}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">订单状态</div>
+                                                <if condition="$order['charge_status'] eq 1">
+                                                    未支付
+                                                </if>
+                                                <if condition="$order['charge_status'] eq 2">
+                                                    已提交待审核
+                                                </if>
+                                                <if condition="$order['charge_status'] eq 3">
+                                                    审核通过
+                                                </if>
+                                                <if condition="$order['charge_status'] eq 4">
+                                                    审核不通过
+                                                </if>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-content">
+
+                                    <if condition="$order['is_charge'] eq 2">
+                                        <div>收款方</div>
+                                        <else/>
+                                        <div>付款方</div>
+                                    </if>
+                                    <div class="card-content-inner">
+                                        开户名：{$order.real_name}
+                                    </div>
+                                    <div class="card-content-inner">
+                                        <if condition="$order['is_charge'] eq 2">
+                                            金额：{$order['charge_money']*89/100}
+                                            <else/>
+                                            金额：{$order.charge_money}
+                                        </if>
+
+
+
+                                    </div>
+                                    <div class="card-content-inner">
+                                        开户行:{$order.charge_bank}
+                                    </div>
+                                    <div class="card-content-inner">
+                                        支行:{$order.charge_sub_bank}
+                                    </div>
+                                    <div class="card-content-inner">
+                                        银行账号：{$order.charge_bankcard}
+                                    </div>
+                                    <div class="card-content-inner">
+                                        代理等级：{$order.level}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <if condition="$order['charge_status'] eq 1">
+                            <div class="row text-center">
+                                <!-- 银行卡按钮-替换图片路径 -->
+                                <div class="col-50 btn-yhk"><img src="{$Think.ADMIN_IMG}/bank_charge.png" style="width: 70%;"></div>
+                                <!-- 支付宝按钮-替换图片路径 -->
+                                <div class="col-50 btn-zfb"><img src="{$Think.ADMIN_IMG}/zhifubao_charge.png" style="width: 70%;"></div>
+                            </div>
+                            </if>
+                            <input type="text" id="charge_type" class="btn-type" style="display: none" value="1" name="">
+                            <!-- 银行卡 -->
+                            <div class="card card-yhk">
+                                <div class="card-content">
+                                    <if condition="$order['is_charge'] eq 2">
+                                        <div>付款方</div>
+                                        <else/>
+                                        <div>收款方</div>
+                                    </if>
+                                    <div class="card-content-inner">
+                                        开户名：海南盛英汇电子竞技有限公司
+                                    </div>
+                                    <div class="card-content-inner">
+                                        开户行：中国工商银行海口和平南支行
+                                    </div>
+                                    <div class="card-content-inner">
+                                        银行账号：2201020409200049910
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 支付宝 -->
+                            <div class="card card-zfb" style="display: none">
+                                <div class="card-content">
+                                    <if condition="$order['is_charge'] eq 2">
+                                        <div>付款方</div>
+                                        <else/>
+                                        <div>收款方</div>
+                                    </if>
+                                    <!--<div class="card-content-inner">-->
+                                        <!--用户名：-->
+                                    <!--</div>-->
+                                    <!--<div class="card-content-inner">-->
+                                        <!--支付宝账号：-->
+                                    <!--</div>-->
+                                    <div class="card-content-inner">
+
+                                        <img src="{$Think.ADMIN_IMG}/zfberweima.jpg" style="width: 100%;">
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <input type="text" id="order_num" value="{$order.order_num}" hidden>
+                            <if condition="$order['charge_status'] eq 1">
+                                <a id="fukun_m" class="button" style="margin-top:.5rem">
+                                    <img src="{$Think.ADMIN_IMG}/img/querenfukuan.png" style="width: 45%;">
+                                </a>
+                            </if>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js"></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/charge.js"></script>
+<script type="text/javascript">
+
+    $.init();
+
+    Zepto(".btn-yhk").click(function(){
+        Zepto(".card-yhk").show();
+        Zepto(".card-zfb").hide();
+        Zepto(".btn-type").val("1");
+        // alert(Zepto(".btn-type").val());
+    });
+    Zepto(".btn-zfb").click(function(){
+        Zepto(".card-zfb").show();
+        Zepto(".card-yhk").hide();
+        Zepto(".btn-type").val("2");
+        // alert(Zepto(".btn-type").val());
+    });
+
+    Zepto(".open-panel").click(function(){
+        Zepto(".close-panel").show();
+        Zepto(".open-panel").hide();
+    });
+    Zepto(".close-panel").click(function(){
+        Zepto(".open-panel").show();
+        Zepto(".close-panel").hide();
+    });
+
+</script>
+</html>

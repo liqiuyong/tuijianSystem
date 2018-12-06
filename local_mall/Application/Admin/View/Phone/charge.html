@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>充值</title>
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+		<link rel="shortcut icon" href="/favicon.ico">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm.min.css">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm-extend.min.css">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/myPagination.css">
+		<script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+	</head>
+
+	<style type="text/css">
+		.card .list-block li {margin: .2rem 0;}
+		.col-33{margin: .2rem 0}
+		.row {padding: .1rem .75rem;}
+	</style>
+	<body>
+
+		<div class="page-group">
+			<div class="page">
+				<!--导航栏-->
+				<include file="Public/nav_m" />
+
+				<div class="content">
+					<include file="Public/marquee_m" />
+					<div class="content-block">
+
+						<div class="card">
+							<img src="{$Think.ADMIN_IMG}/img/chongzhikuang.png" style="width:100%">
+							<div style="position: absolute;width: 100%;height: 90%;top: 10%;">
+								<form id="form2">
+
+								<div class="list-block">
+									<ul>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">手机号：</div>
+													<div class="item-input">
+														<input type="text" name="phone" value="<if condition="$user">{$user['phone']}</if>">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">卡号：</div>
+													<div class="item-input">
+														<input type="text" name="bank_card" value="<if condition="$user">{$user['bank_card']}</if>">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">开户行：</div>
+													<div class="item-input">
+														<input type="text" name="bank_name" value="<if condition="$user">{$user['bank_name']}</if>">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">姓名：</div>
+													<div class="item-input">
+														<input type="text" name="real_name" value="<if condition="$user">{$user['real_name']}</if>">
+													</div>
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="item-content">
+												<div class="item-inner">
+													<div class="item-title label">身份证号：</div>
+													<div class="item-input">
+														<input type="text" name="real_card" value="<if condition="$user">{$user['real_card']}</if>">
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<div class="row">
+									等级
+								</div>
+								<div class="row text-center">
+									<!--<div class="col-33">-->
+										<!--<label class="label-checkbox item-content">-->
+											<!--<input type="radio" name="my-radio" checked="checked">-->
+											<!--<div class="item-media"><i class="icon icon-form-checkbox"></i>&nbsp;铜牌代理</div>-->
+										<!--</label>-->
+									<!--</div>-->
+									<volist name="level_arr" id="vo">
+
+										<div class="col-33">
+											<label class="label-checkbox item-content">
+												<input type="radio" name="level_id" value="{$vo.id}" alt="{$vo.coin}" <if condition="$vo.id eq 1">checked="checked" </if>/>
+												<div class="item-media"><i class="icon icon-form-checkbox"></i>&nbsp;{$vo.level}</div>
+											</label>
+										</div>
+
+									</volist>
+									<!--<div class="col-33">-->
+										<!--<label class="label-checkbox item-content">-->
+											<!--<input type="radio" name="my-radio">-->
+											<!--<div class="item-media"><i class="icon icon-form-checkbox"></i>&nbsp;银牌代理</div>-->
+										<!--</label>-->
+									<!--</div>-->
+									<!--<div class="col-33">-->
+										<!--<label class="label-checkbox item-content">-->
+											<!--<input type="radio" name="my-radio">-->
+											<!--<div class="item-media"><i class="icon icon-form-checkbox"></i>&nbsp;金牌代理</div>-->
+										<!--</label>-->
+									<!--</div>-->
+									<!--<div class="col-33">-->
+										<!--<label class="label-checkbox item-content">-->
+											<!--<input type="radio" name="my-radio">-->
+											<!--<div class="item-media"><i class="icon icon-form-checkbox"></i>&nbsp;铂金代理</div>-->
+										<!--</label>-->
+									<!--</div>-->
+									<!--<div class="col-33">-->
+										<!--<label class="label-checkbox item-content">-->
+											<!--<input type="radio" name="my-radio">-->
+											<!--<div class="item-media"><i class="icon icon-form-checkbox"></i>&nbsp;钻石代理</div>-->
+										<!--</label>-->
+									<!--</div>-->
+									<!--<div class="col-33">-->
+										<!--<label class="label-checkbox item-content">-->
+											<!--<input type="radio" name="my-radio">-->
+											<!--<div class="item-media"><i class="icon icon-form-checkbox"></i>&nbsp;金钻代理</div>-->
+										<!--</label>-->
+									<!--</div>-->
+									<!--<div class="col-33">-->
+										<!--<label class="label-checkbox item-content">-->
+											<!--<input type="radio" name="my-radio">-->
+											<!--<div class="item-media"><i class="icon icon-form-checkbox"></i>&nbsp;市级代理</div>-->
+										<!--</label>-->
+									<!--</div>-->
+									<!--<div class="col-33">-->
+										<!--<label class="label-checkbox item-content">-->
+											<!--<input type="radio" name="my-radio">-->
+											<!--<div class="item-media"><i class="icon icon-form-checkbox"></i>&nbsp;省级代理</div>-->
+										<!--</label>-->
+									<!--</div>-->
+								</div>
+								<a  class="button" style="margin-top:.5rem">
+									<img onclick="charge_m()" id="sub-btn-m" src="{$Think.ADMIN_IMG}/img/dingdanshengcheng.png" style="width: 45%;">
+								</a>
+								</form>
+
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+				
+	
+
+
+		
+	</body>
+	<script type='text/javascript' src='{$Think.ADMIN_JS}/zepto.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='{$Think.ADMIN_JS}/sm.min.js' charset='utf-8'></script>
+	<script type='text/javascript' src='{$Think.ADMIN_JS}/sm-extend.min.js' charset='utf-8'></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/charge.js" ></script>
+
+	<script>
+
+
+        $('input[type=radio][name=level_id]').change(function() {
+
+            $("#coin").text(this.alt)
+
+        });
+
+//        pc端提交
+
+        $('#form1').submit(function () {
+
+            $.post(
+                'charge.html',
+
+                $('#form1').serialize(),
+                function (data) {
+//				    console.log(data);
+                    if (data.status == 1){
+                        alert(data.msg);
+                        window.location.href="charge_status.html?order_num="+data.order_num;
+                    }else if (data.status == 2){
+                        alert(data.msg);
+                        window.location.href="geren.html";
+                    }
+
+                    else {
+                        alert(data.msg);
+
+                    }
+                }
+                , 'json'
+
+            )
+            return false;
+
+        })
+
+
+	</script>
+
+	<script type="text/javascript">
+
+        $.init();
+
+        Zepto(".open-panel").click(function(){
+            Zepto(".close-panel").show();
+            Zepto(".open-panel").hide();
+        });
+        Zepto(".close-panel").click(function(){
+            Zepto(".open-panel").show();
+            Zepto(".close-panel").hide();
+        });
+
+	</script>
+</html>

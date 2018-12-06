@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>登入密码修改</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm.min.css">
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm-extend.min.css">
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/myPagination.css">
+	<script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+
+</head>
+<style type="text/css">
+
+
+</style>
+
+<body>
+<div class="page-group">
+	<div class="page">
+		<!--导航栏-->
+		<include file="Public/nav_m" />
+
+		<div class="content">
+
+			<include file="Public/marquee_m" />
+
+			<div class="content-block">
+
+				<div class="card" style="background: transparent;">
+					<img src="{$Think.ADMIN_IMG}/img/jiaoyimimaxiugai.png" style="width:100%">
+					<div style="position: absolute;width: 100%;height: 90%;top: 10%;">
+
+						<div class="list-block">
+							<ul>
+								<li>
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title label">输入手机号：</div>
+											<div class="item-input">
+												<input type="text" name="phone" id="phone" value="" maxlength="11" />
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title label">输入验证码：</div>
+											<div class="item-input">
+												<input id="code" type="text" maxlength="4">
+											</div>
+											<div  id="phoneCode-div" class="item-input" style="background-color: transparent;text-align: center;">
+												<img id="phoneCode-img" src="{$Think.ADMIN_IMG}/img/huoquyanzhengma.png" style="width:80%" onclick="get_phoneCode()" >
+												<span id="code-text"></span>
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title label">输入身份证号码：</div>
+											<div class="item-input">
+												<input type="text" name="" id="real_card" value="" maxlength="30" />
+											</div>
+										</div>
+									</div>
+								</li>
+								<!--<li>-->
+								<!--<div class="item-content">-->
+								<!--<div class="item-inner">-->
+								<!--<div class="item-title label">输入旧密码：</div>-->
+								<!--<div class="item-input">-->
+								<!--<input type="text">-->
+								<!--</div>-->
+								<!--</div>-->
+								<!--</div>-->
+								<!--</li>-->
+								<li>
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title label">输入新密码：</div>
+											<div class="item-input">
+												<input type="password" name="password" id="password" value="" maxlength="32" />
+											</div>
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-inner">
+											<div class="item-title label">确认新密码：</div>
+											<div class="item-input">
+												<input type="password" name="repassword" id="repassword" value="" maxlength="32" />
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<a href="#" class="button">
+							<img id="modiy_btn" src="{$Think.ADMIN_IMG}/img/querenxiugai.png" style="width: 45%;">
+						</a>
+					</div>
+				</div>
+
+
+
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script type='text/javascript' src='{$Think.ADMIN_JS}/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/geren.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+<script>
+
+    $(function () {
+// 		修改提交
+        $("#modiy_btn").click(function () {
+            var phone = $("#phone").val();
+			var code = $("#code").val();
+            var real_card = $("#real_card").val();
+            var password = $("#password").val();
+            var repassword = $("#repassword").val();
+
+            if (phone.length == 0){
+                alert("手机号码不为空!");
+                return;
+            }
+                if (code.length == 0){
+                    alert("验证码不为空!");
+                    return;
+                }
+            if (real_card.length == 0){
+                alert("身份证号码不为空!");
+                return;
+            }
+            if (password.length == 0){
+                alert("请输入修改密码!");
+                return;
+            }
+            if (password.length == 0){
+                alert("请输入确认密码!");
+                return;
+            }
+            if (password != repassword){
+                alert("密码不一致,请重新输入!");
+                return;
+            }
+
+            $.post(
+//                    "{:U('Index/mimaxiugai')}",
+                "jiaoyimimaxiugai.html",
+                {
+                    phone : phone,
+					code: code,
+                    real_card : real_card,
+                    password : password,
+                    repassword : repassword
+                },
+                function (data) {
+
+                    if (data.status == 1){
+                        alert(data.msg);
+                        window.location.href = "index.html";
+
+                    }else {
+                        alert(data.msg);
+                    }
+                }
+                ,'json'
+            )
+
+        })
+    })
+
+
+
+
+    //		获取验证码
+    function get_phoneCode() {
+        var phone = $("#phone").val();
+        var img = $('#phoneCode-img');
+
+        if (phone.length == 0){
+            alert("手机号码不为空!");
+            return;
+        }
+
+
+//        if (btn.attr("alt") == 2){
+//            alert("验证码已发送,请勿重复提交");
+//            return false;
+//        }
+
+        img.hide();
+        run();
+        $.post(
+
+            "get_phoneCode.html",
+            {
+                phone : phone
+            },
+            function (data) {
+                if (data.status == 1){
+                    console.log(data.msg);
+
+                }else {
+                    console.log(data.msg);
+                    alert(data.msg);
+                    btn.attr('disabled',false);
+                }
+            }
+            ,'json'
+
+        )
+
+
+    }
+
+    //		验证码框倒计时按钮
+    function run(){
+        var btn = $('#code-text');
+        btn.show();
+//            alert("验证码已发送");
+        var time = 20;//定义时间变量。用于倒计时用
+        var timer = null;//定义一个定时器；
+        timer = setInterval(function(){
+            ///开启定时器。函数内执行
+
+            btn.attr('disabled',"disabled");
+            btn.text(" 已发送 "+ time)
+            time--;//时间值自减
+            if(time ==0){
+                btn.text('重新发送验证码');
+                btn.hide();
+                var img = $('#phoneCode-img');
+                img.show();
+                clearInterval(timer); //清除定时器
+
+            }
+        },1000)
+    }
+
+
+
+</script>
+<script type="text/javascript">
+
+    $.init();
+
+    Zepto(".open-panel").click(function(){
+        Zepto(".close-panel").show();
+        Zepto(".open-panel").hide();
+    });
+    Zepto(".close-panel").click(function(){
+        Zepto(".open-panel").show();
+        Zepto(".close-panel").hide();
+    });
+
+</script>
+
+</body>
+</html>

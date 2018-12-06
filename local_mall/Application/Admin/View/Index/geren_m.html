@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>个人</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--<link rel="stylesheet" href="{$Think.ADMIN_CSS}/bootstrap.min.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/new_nav.css"/>-->
+    <!--<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/index.css"/>-->
+    <!--<link rel="stylesheet" href="{$Think.ADMIN_CSS}/gonggao.css" />-->
+    <!--<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/geren.css"/>-->
+
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm.min.css">
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm-extend.min.css">
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/myPagination.css">
+    <script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+</head>
+<style>
+
+    body{
+        max-width: 100%;
+    }
+
+    .right-div{
+        background-image: url({$Think.ADMIN_IMG}/1.png);
+        padding: 5px 20px;
+    }
+
+
+
+
+</style>
+<body style="">
+
+<!--适配手机端-->
+
+    <div class="page-group">
+        <div class="page">
+            <header class="bar bar-nav">
+                <a class="icon button-link button-nav pull-left back" href="">
+                    <img src="{$Think.ADMIN_IMG}/img/fanhui.png">
+                </a>
+                <h1 class="title"></h1>
+                <a class="icon pull-right open-panel" data-panel=".panel-right">
+                    <img src="{$Think.ADMIN_IMG}/img/right.png"/>
+                </a>
+                <a class="icon pull-right close-panel" style="display: none">
+                    <img src="{$Think.ADMIN_IMG}/img/right.png"/>
+                </a>
+            </header>
+            <nav class="bar bar-tab">
+                <a class="tab-item" href="#">
+                    <span class="icon"><img src="{$Think.ADMIN_IMG}/img/sy.png" width="26px" /></span>
+                    <span class="tab-label">首页</span>
+                </a>
+                <a class="tab-item" href="#">
+                    <span class="icon"><img src="{$Think.ADMIN_IMG}/img/cw.png" width="26px"/></span>
+                    <span class="tab-label">财务</span>
+                </a>
+                <a class="tab-item" href="#">
+                    <span class="icon"><img src="{$Think.ADMIN_IMG}/img/tj.png" width="25px"/></span>
+                    <span class="tab-label">推荐</span>
+                </a>
+                <a class="tab-item" href="#">
+                    <span class="icon"><img src="{$Think.ADMIN_IMG}/img/dd.png" width="22px"/></span>
+                    <span class="tab-label">订单</span>
+                </a>
+                <a class="tab-item" href="#">
+                    <span class="icon"><img src="{$Think.ADMIN_IMG}/img/bd.png" width="24px"/></span>
+                    <span class="tab-label">报单</span>
+                </a>
+            </nav>
+            <!-- 右侧栏 -->
+            <div class="panel-overlay"></div>
+            <div class="panel panel-right panel-cover">
+                <div class="content-block" style="padding: 0;margin: 0">
+                    <div class="list-block" style="margin:0">
+                        <ul style="border-bottom: 2px solid #a79e9e;padding: 10px 0">
+                            <li class="item-content">
+                                <div class="item-inner" style="padding-right: .75rem;font-weight: bold;font-size: .8rem">
+                                    <div class="item-title">ID:{$user.phone}</div>
+                                    <div class="item-after"><img src="{$Think.ADMIN_IMG}/img/saomiao.png" style="height: 1.4rem"></div>
+                                </div>
+                            </li>
+                            <li class="item-content">
+                                <div class="item-inner" style="padding-right: .75rem">
+                                    <div class="item-title">{$user.real_name | default='未认证'}</div>
+                                    <div class="item-after">{$user.level | default='无代理'}</div>
+                                </div>
+                            </li>
+                            <li class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">手机号&nbsp;&nbsp;&nbsp;&nbsp;{$user.phone}</div>
+                                </div>
+                            </li>
+                            <li class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">身份证号&nbsp;&nbsp;{$user.real_card | default='未认证'}</div>
+                                </div>
+                            </li>
+                            <li class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">交易折扣&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:red">无</span></div>
+                                </div>
+                            </li>
+                            <li class="item-content">
+                                <div class="item-inner">
+                                    <div class="item-title">地区&nbsp;&nbsp;&nbsp;&nbsp;{$user.province | default='未设置'}</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul style="padding: 10px 0">
+                            <a href="geren.html" class="item-content">
+                                <div class="item-media"><i class="icon icon-f icon-f1"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title">身份认证</div>
+                                </div>
+                            </a>
+                            <a href="mimaxiugai.html" class="item-content">
+                                <div class="item-media"><i class="icon icon-f icon-f2"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title">登录密码修改</div>
+                                </div>
+                            </a>
+                            <a href="jiaoyimimaxiugai.html" class="item-content">
+                                <div class="item-media"><i class="icon icon-f icon-f3"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title">交易密码修改</div>
+                                </div>
+                            </a>
+                            <a href="kefulianxi.html" class="item-content">
+                                <div class="item-media"><i class="icon icon-f icon-f4"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title">联系客服</div>
+                                </div>
+                            </a>
+                            <a href="faq.html" class="item-content">
+                                <div class="item-media"><i class="icon icon-f icon-f5"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title">F A Q</div>
+                                </div>
+                            </a>
+                            <a href="#" class="item-content" onclick="logout()">
+                                <div class="item-media"><i class="icon icon-f icon-f6"></i></div>
+                                <div class="item-inner">
+                                    <div class="item-title">退出</div>
+                                </div>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <marquee style="position: fixed;max-width:640px;height: 1.6rem;width:100%;line-height: 1.6rem;text-align: center;font-size: 0.6rem;color:#fff;background: #39455a">欢迎登入盛英汇管理系统</marquee>
+                <div class="content-block">
+
+                    <div class="card">
+                        <img src="{$Think.ADMIN_IMG}/img/shenfenrenzheng.png" style="width:100%">
+                        <div style="position: absolute;width: 100%;height: 90%;top: 10%;">
+                            <div class="row text-center">
+                                <div class="col-50">
+                                    上传身份证正面
+                                    <div>
+                                        <img src="{$Think.ADMIN_IMG}/img/xukuang.png" style="width: 69%;background: #fff;padding: 5px;border-radius: 8px;margin: 10px 0;">
+                                    </div>
+                                </div>
+                                <div class="col-50">
+                                    上传身份证反面
+                                    <div>
+                                        <img src="{$Think.ADMIN_IMG}/img/xukuang.png" style="width: 69%;background: #fff;padding: 5px;border-radius: 8px;margin: 10px 0;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-block">
+                                <ul>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">姓名：</div>
+                                                <div class="item-input">
+                                                    <input id="real_name_2" type="text" value="<if condition="$user">{$user.real_name}</if>" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">身份证号：</div>
+                                                <div class="item-input">
+                                                    <input id="real_card_2" type="text" value="<if condition="$user">{$user.real_card}</if>" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">银行卡号：</div>
+                                                <div class="item-input">
+                                                    <input id="bank_card_2" type="text" value="<if condition="$user">{$user.bank_card}</if>" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="item-content">
+                                            <div class="item-inner">
+                                                <div class="item-title label">银行：</div>
+                                                <div class="item-input">
+                                                    <input id="bank_name_2" type="text" value="<if condition="$user">{$user.bank_name}</if>" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="javascript:void(0)" id="sub-btn2" class="button">
+                                <img src="{$Think.ADMIN_IMG}/img/tijiao.png" style="width: 45%;">
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+</body>
+<!--<script type="text/javascript" src="{$Think.ADMIN_JS}/jquery-3.1.0.js" ></script>-->
+<!--<script type="text/javascript" src="{$Think.ADMIN_JS}/bootstrap.min.js" ></script>-->
+<script type='text/javascript' src='{$Think.ADMIN_JS}/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/geren.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+<script type="text/javascript">
+
+
+
+    function browserRedirect() {
+        var sUserAgent = navigator.userAgent.toLowerCase();
+        var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        var bIsAndroid = sUserAgent.match(/android/i) == "android";
+        var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (!(bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) ){
+            var path=window.location.search;
+            window.location.href='geren.html?'+path;
+
+        }else{
+            var path=window.location.search;
+            window.location.href='geren_m.html?'+path;
+        }
+    }
+    browserRedirect();
+
+
+
+
+
+
+
+
+    $(function () {
+
+        //提交按钮
+        $("#sub-btn").click(function () {
+            //                alert(123);
+            var img1 = $("#img1").attr('src');
+            var img2 = $("#img2").attr('src');
+            var real_name = $("#real_name").val();
+            var real_card = $("#real_card").val();
+            var bank_name = $("#bank_name").val();
+            var bank_card = $("#bank_card").val();
+
+            $.post(
+                "geren.html",
+                {
+                    img1 : img1,
+                    img2 : img2,
+                    real_card : real_card,
+                    real_name : real_name,
+                    bank_name : bank_name,
+                    bank_card : bank_card,
+                },
+                function (data) {
+                    if (data.status == 1){
+                        alert(data.msg);
+                        window.location.href = "./index.html";
+                    }else {
+                        $("#info").html(data.msg);
+                    }
+                }
+                ,'json'
+            )
+
+        })
+
+
+
+
+
+        //提交按钮-----手机端提交
+        $("#sub-btn2").click(function () {
+
+//                var img1 = $("#img1").attr('src');
+//                var img2 = $("#img2").attr('src');
+            var real_name = $("#real_name_2").val();
+            var real_card = $("#real_card_2").val();
+            var bank_name = $("#bank_name_2").val();
+            var bank_card = $("#bank_card_2").val();
+
+            $.post(
+                "geren.html",
+                {
+//                        img1 : img1,
+//                        img2 : img2,
+                    real_card : real_card,
+                    real_name : real_name,
+                    bank_name : bank_name,
+                    bank_card : bank_card,
+                },
+                function (data) {
+                    if (data.status == 1){
+                        alert(data.msg);
+                        window.location.href = "./index.html";
+                    }else {
+//                            $("#info").html(data.msg);
+                        alert(data.msg)
+                    }
+                }
+                ,'json'
+            )
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+        //		图片1上传
+        $("#file").change(function(){
+            $("#info").html("");
+            var formdata = new FormData;
+            //把jQuery对象转成js对象  .get(0)
+            var dataArr = $('#file').get(0).files;
+
+            for (var i=0; i<dataArr.length; i++){
+                formdata.append('myfiles['+i+']',dataArr[i]);
+            }
+            $.ajax({
+                url:"upload_img.html",
+                type:"POST",
+                data:formdata,
+                contentType:false,
+                processData:false,
+                success:function(data){
+                    $("#info").html(data);
+                    if (data.status == 1){
+                        console.log(data.msg);
+                        console.log(data.src);
+                        $("#file").hide();
+                        $("#img1").attr('src',data.src);
+                        $("#img1").show();
+                    }else{
+                        console.log(data.msg);
+                        $("#info").text("上传存在错误1");
+                    }
+
+                },
+                error:function () {
+                    $("#info").html('上传存在错误2');
+                },
+                dataType:"json"
+            });
+
+        })
+
+
+        //		图片2上传
+        $("#file2").change(function(){
+            $("#info").html("");
+            var formdata = new FormData;
+            //把jQuery对象转成js对象  .get(0)
+            var dataArr = $('#file2').get(0).files;
+
+            for (var i=0; i<dataArr.length; i++){
+                formdata.append('myfiles_2['+i+']',dataArr[i]);
+            }
+            $.ajax({
+                url:"upload_img.html",
+                type:"POST",
+                data:formdata,
+                contentType:false,
+                processData:false,
+                success:function(data){
+                    $("#info").html(data);
+                    if (data.status == 1){
+                        console.log(data.msg);
+                        console.log(data.src);
+                        $("#file2").hide();
+                        $("#img2").attr('src',data.src);
+                        $("#img2").show();
+                    }else{
+                        console.log(data.msg);
+                        $("#info").text("上传存在错误1");
+                    }
+
+                },
+                error:function () {
+                    $("#info").html('上传存在错误2');
+                },
+                dataType:"json"
+            });
+
+        })
+
+
+    })
+
+
+    function alert_check(){
+        alert("请先完善个人信息!");
+        return false;
+    }
+
+
+
+
+</script>
+
+<script type="text/javascript">
+
+            $.init();
+
+    Zepto(".open-panel").click(function(){
+        Zepto(".close-panel").show();
+        Zepto(".open-panel").hide();
+    });
+    Zepto(".close-panel").click(function(){
+        Zepto(".open-panel").show();
+        Zepto(".close-panel").hide();
+    });
+
+</script>
+</html>

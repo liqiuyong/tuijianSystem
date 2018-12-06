@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>报单明细</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm.min.css">
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm-extend.min.css">
+    <link rel="stylesheet" href="{$Think.ADMIN_CSS}/myPagination.css">
+    <script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+</head>
+<style type="text/css">
+    .list-block .item-content {
+        min-height: 1.6rem;
+    }
+    .list-block .item-inner {
+        padding-top: 0rem;
+        padding-bottom: 0rem;
+        min-height: 1.6rem;
+    }
+    .modal{
+        width: 90%;
+        left: 5%;
+        margin-left: 0;
+        border: 2px solid #ffd870;
+        border-radius: 0;
+        background: #442e19;
+        min-height: 50vh;
+    }
+    .modal-inner{
+        background: #442e19;
+        border-radius: 0;
+    }
+    .modal-buttons{
+        position: absolute;
+        height: 35px;
+        width: 101.2%;
+        top: -35px;
+        left: -.6%;
+    }
+    .modal-buttons span{
+        background:  #ffd870;
+        background-repeat: no-repeat;
+        background-image: url({$Think.ADMIN_IMG}/img/cha.png);
+        background-position: 98% 9px;
+    }
+
+    .page, .page-group{
+        display: block;
+    }
+</style>
+<body>
+
+
+
+    <div class="page-group">
+        <div class="page">
+            <!--导航栏-->
+            <include file="Public/nav_m" />
+
+            <div class="content">
+                <include file="Public/marquee_m" />
+
+                <div class="content-block">
+                </div>
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-content-inner text-center" style="font-size:.8rem;color:#ffff99;font-weight:bold">
+                            　省级代理列表
+                        </div>
+                        <div class="card-content-inner" style="font-size:.6rem;color:#feecbe">
+                            <div class="row no-gutter">
+                                推荐总数：6000
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                有效数量：800
+                            </div>
+                            <div class="row no-gutter">
+                                奖励统计：金600
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                银500
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                铜300
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-bottom">
+                    <table border="0">
+                        <tr class="thead">
+                            <th>姓名</th>
+                            <th>级别</th>
+                            <th>注册金额</th>
+                            <th>金银铜奖励</th>
+                            <th>其他奖励</th>
+                            <th>当前状态</th>
+                        </tr>
+                        <!--<tr>-->
+                            <!--<th>张三</th>-->
+                            <!--<th>省级</th>-->
+                            <!--<th>80000</th>-->
+                            <!--<th>100/100/100</th>-->
+                            <!--<th></th>-->
+                            <!--<th>有效</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>张三</th>-->
+                            <!--<th>省级</th>-->
+                            <!--<th>80000</th>-->
+                            <!--<th>100/100/100</th>-->
+                            <!--<th></th>-->
+                            <!--<th>有效</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>张三</th>-->
+                            <!--<th>省级</th>-->
+                            <!--<th>80000</th>-->
+                            <!--<th>100/100/100</th>-->
+                            <!--<th></th>-->
+                            <!--<th>有效</th>-->
+                        <!--</tr>-->
+                        <!--<tr>-->
+                            <!--<th>张三</th>-->
+                            <!--<th>省级</th>-->
+                            <!--<th>80000</th>-->
+                            <!--<th>100/100/100</th>-->
+                            <!--<th></th>-->
+                            <!--<th>有效</th>-->
+                        <!--</tr>-->
+                    </table>
+                </div>
+                <div id="pagination" class="pagination"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</body>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/jquery-3.1.0.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/bootstrap.min.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/charge.js" ></script>
+
+<script type="text/javascript">
+
+    $.init();
+
+    Zepto(".open-panel").click(function(){
+        Zepto(".close-panel").show();
+        Zepto(".open-panel").hide();
+    });
+    Zepto(".close-panel").click(function(){
+        Zepto(".open-panel").show();
+        Zepto(".close-panel").hide();
+    });
+
+</script>
+<script>
+    window.onload = function () {
+        new myPagination({
+            id: 'pagination',
+            curPage:1, //初始页码
+            pageTotal: 50, //总页数
+            pageAmount: 10,  //每页多少条
+            dataTotal: 500, //总共多少条数据
+            pageSize: 5, //可选,分页个数
+            showPageTotalFlag:true, //是否显示数据统计
+            showSkipInputFlag:true, //是否支持跳转
+            getPage: function (page) {
+                //获取当前页数
+                console.log(page);
+            }
+        })
+
+    }
+</script>
+</html>

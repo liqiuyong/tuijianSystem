@@ -1,0 +1,80 @@
+
+		.table,.table>tbody>tr>td,.table>thead>tr>th{
+        	border:0px;
+        	text-align: center;
+        }
+        .table{
+        	margin: 20px 0;
+        }
+
+        .tuijian{
+			background-image: url(../images/tuijian_dikuang.png);
+			background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+			margin-bottom: 20px;
+
+		}
+
+
+
+
+
+		.nichen-div{
+			background-color:rgba(255,255,255,0.1);
+			display: inline-block;
+			padding: 0 15px;
+			height: 50px;
+			line-height: 50px;
+			margin-bottom: 40px;
+
+		}
+
+		.left-nav{
+			padding: 0;
+			padding-right:10px ;
+		}
+		.left-nav li{
+			width: 100%;
+			margin-bottom: 10px;
+			list-style: none;
+		}
+
+		.right-div{
+			/*background-color:rgba(255,255,255,0.3);*/
+			padding-top: 10px;
+			position: relative;
+			top: -30px;
+
+			background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+			min-height: 500px;
+
+		}
+
+		.real_card_bg{
+			background-image: url(../images/real_card_bg.png);
+			background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+
+		}
+
+		/*tr td,tr th{padding: 0 10px;}*/
+
+		.right-div input{
+			background-color:rgba(255,255,255,0.1);
+			border: none;
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+			line-height: 100%;
+			padding: 5px;
+		}
+
+		/*获取验证码*/
+
+		@media only screen and (min-width: 640px) {
+			.phone-code{
+				display: inline-block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				padding: 5px;
+			}
+		}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>道具商城</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/new_nav.css"/>
+		<link rel="stylesheet" type="text/css" href="{$Think.ADMIN_CSS}/index.css"/>
+		<link rel="stylesheet" href="{$Think.ADMIN_CSS}/gonggao.css" />
+	</head>
+	<style>
+
+		.table,.table>tbody>tr>td,.table>thead>tr>th{
+        	border:0px;
+        	/*text-align: center;*/
+        }
+        .table{
+        	table-layout：fixed;
+        	margin: 20px 0;
+        }
+        
+        td{
+        	
+        	word-wrap:break-word;word-break:break-all;
+        }
+        
+        tbody tr:nth-child(odd){background:#674527;}
+        
+        .order-list
+        {
+			background-image: url({$Think.ADMIN_IMG}/dingdang_bg_2.png);
+			background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+			margin-bottom: 20px;
+
+		}
+		
+		
+		/*二维码区域*/
+		.bottom-div-cont{
+			float: right;
+			width: 100px;
+			height: 100px;
+			/*border: 1px solid white;*/
+			line-height: 40px;
+			
+			margin: 30px 0 0 30px;
+			
+		}
+        
+	</style>
+	<body style="">
+
+
+	<!--导航栏-->
+	<include file="Public/nav" />
+
+	<!--导航 结束/-->
+
+	<!--公告栏-->
+	<!--<div class="gonggao">-->
+		<!--<marquee  onmouseover=this.stop() onmouseout=this.start() behavior="scroll" direction="left" class="gonggao_text">欢迎登录盛英汇管理系统</marquee>-->
+
+	<!--</div>-->
+		 
+		 <!--内容区域-->
+		 <div class="container main">
+
+
+				<div class="main-cont">
+					
+					
+					<div class="order-list" style="margin-top: 10px;">
+						
+						<div style="position: relative;">
+							<img src="{$Think.ADMIN_IMG}/daoju_tou.png" width="100%" />
+							
+							<div style="position: absolute; top: 0;left: 5%;width: 10%;">
+								<a href="javascript:history.back(-1)"><img src="{$Think.ADMIN_IMG}/fanhui.png" width="100%"></a>
+							</div>
+						</div>
+						
+						<div>
+							<img src="{$Think.ADMIN_IMG}/daoju_middle.png" width="100%" />
+
+						</div>
+						<div>
+
+							<img src="{$Think.ADMIN_IMG}/daoju_body.jpg" width="100%" />
+							<img src="{$Think.ADMIN_IMG}/daoju_body.jpg" width="100%" />
+						</div>
+					</div>				
+
+		
+				
+				</div>
+
+
+
+		 
+		 
+		 </div>
+				
+	
+				
+	
+
+
+		
+	</body>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/jquery-3.1.0.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/bootstrap.min.js" ></script>
+	<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+</html>

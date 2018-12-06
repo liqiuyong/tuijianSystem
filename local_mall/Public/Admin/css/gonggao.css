@@ -1,0 +1,25 @@
+/*公告栏*/
+.gonggao{
+    height: 30px;
+    /*border: 1px solid white;*/
+    /*background: white;*/
+    background-image: url(../images/paomadeng.png);
+    background-repeat:no-repeat; background-size:100% 100%;-moz-background-size:100% 100%;
+    margin-top: -2px;
+}
+
+
+.gonggao_text {
+
+    line-height: 30px;
+    font-size: 17px;
+    word-break: keep-all;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: white;
+}
+
+.gonggao-asset-main {
+    width: 832px;
+    margin: 0 auto;
+}

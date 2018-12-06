@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>资产信息</title>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm.min.css">
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/sm-extend.min.css">
+	<link rel="stylesheet" href="{$Think.ADMIN_CSS}/myPagination.css">
+	<script src="{$Think.ADMIN_JS}/myPagination.js"></script>
+</head>
+<style>
+	.list-block .item-content {
+		min-height: 1.6rem;
+	}
+	.list-block .item-inner {
+		padding-top: 0rem;
+		padding-bottom: 0rem;
+		min-height: 1.6rem;
+	}
+	.modal{
+		width: 90%;
+		left: 5%;
+		margin-left: 0;
+		border: 2px solid #ffd870;
+		border-radius: 0;
+		background: #442e19;
+		min-height: 50vh;
+	}
+	.modal-inner{
+		background: #442e19;
+		border-radius: 0;
+	}
+	.modal-buttons{
+		position: absolute;
+		height: 35px;
+		width: 101.2%;
+		top: -35px;
+		left: -.6%;
+	}
+	.modal-buttons span{
+		background:  #ffd870;
+		background-repeat: no-repeat;
+		background-image: url(img/cha.png);
+		background-position: 98% 9px;
+	}
+
+</style>
+
+<body>
+
+
+<!--手机界面-->
+
+	<div class="page-group">
+		<div class="page">
+			<!--导航栏-->
+			<include file="Public/nav_m" />
+
+			<div class="content">
+				<include file="Public/marquee_m" />
+
+				<div class="content-block">
+					<div class="buttons-row">
+						<a href="#tab1" class="tab-link active button">
+							<img src="{$Think.ADMIN_IMG}/img/zichanxinxi.png" class="c_img">
+							<img src="{$Think.ADMIN_IMG}/img/zichanxinxi2.png">
+						</a>
+						<!--<a href="#tab2" class="tab-link button">-->
+						<!--<img src="{$Think.ADMIN_IMG}/img/jiaoyijilu.png">-->
+						<!--<img src="{$Think.ADMIN_IMG}/img/jiaoyijilu2.png" class="c_img">-->
+						<!--</a>-->
+					</div>
+				</div>
+				<div class="tabs">
+					<div id="tab1" class="tab active">
+						<div class="card">
+							<div class="card-header">财务概况</div>
+							<div class="card-content">
+								<div class="card-content-inner">
+									<span>资产评估：</span>
+									<span class="red">&nbsp;&nbsp;&nbsp;&nbsp;<if condition="$wallet">{$wallet['active_money']+$wallet['frozen_money']}<else/>0</if>&nbsp;&nbsp;&nbsp;&nbsp;人民币</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<span>{$user.level}</span>
+								</div>
+								<div class="card-content-inner text-center">
+									<div class="row">
+										<a href="./charge_m.html" class="col-50"><img src="{$Think.ADMIN_IMG}/img/chongzhi.png" width="70%"></a>
+										<a href="./get_cash_m.html" class="col-50"><img src="{$Think.ADMIN_IMG}/img/tixian.png" width="70%"></a>
+									</div>
+								</div>
+								<div class="card-content-inner text-center">
+									<div class="row">
+										<div class="col-33">
+											我的分润<div class="red">0</div>
+										</div>
+										<div class="col-33">
+											佣金余额<div class="red"><if condition="$wallet">{$wallet.active_money}<else/>0</if></div>
+										</div>
+										<div class="col-33">
+											鼓励金<div class="red"><if condition="$wallet">{$wallet.frozen_money}<else/>0</if></div>
+										</div>
+									</div>
+								</div>
+								<div class="card-content-inner text-center">
+									<div class="row">
+										<div class="col-33">
+											红积分<div class="red"><if condition="$wallet">{$wallet.red_coin}<else/>0</if></div>
+										</div>
+										<div class="col-33">
+											白积分<div class="red"><if condition="$wallet">{$wallet.white_coin}<else/>0</if></div>
+										</div>
+										<div class="col-33">
+											黑积分<div class="red"><if condition="$wallet">{$wallet.black_coin}<else/>0</if></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card">
+							<div class="card-header">当前行情
+								<span style="font-size:.6rem;">钻石&nbsp;0</span>
+								<span style="font-size:.6rem;">金&nbsp;0</span>
+								<span style="font-size:.6rem;">银&nbsp;0</span>
+							</div>
+							<div class="card-content">
+								<dic class="card-content-inner">
+									<div class="row">
+										<div class="col-15" style="font-size:.6rem;text-align:right">
+											<div style="line-height:40px">钻石</div>
+											<div style="line-height:40px">金</div>
+											<div style="line-height:40px">银</div>
+										</div>
+										<div class="col-80" style="height:120px">
+											<img src="{$Think.ADMIN_IMG}/img/k xiantu.png" width="95%">
+										</div>
+									</div>
+							</div>
+						</div>
+					</div>
+					<div id="tab2" class="tab">
+						<div class="content-block" style="margin-top:2rem;">
+							<table border="0">
+								<tr class="thead">
+									<th>时间<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+									<th>单号<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+									<th>代理等级<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+									<th>状态<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+									<th>金额<img src="{$Think.ADMIN_IMG}/img/xia.png"></th>
+									<th>交易类型</th>
+									<th>地点</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+								<tr>
+									<th>2011-20-22</th>
+									<th>4243552424</th>
+									<th>省级</th>
+									<th>有效</th>
+									<th>500</th>
+									<th>红积分</th>
+									<th>积分商城</th>
+								</tr>
+							</table>
+						</div>
+						<div id="pagination" class="pagination"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+</body>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='{$Think.ADMIN_JS}/sm-extend.min.js' charset='utf-8'></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/logout.js" ></script>
+<script type="text/javascript" src="{$Think.ADMIN_JS}/charge.js" ></script>
+<script type="text/javascript">
+
+    $.init();
+
+    Zepto(".open-panel").click(function(){
+        Zepto(".close-panel").show();
+        Zepto(".open-panel").hide();
+    });
+    Zepto(".close-panel").click(function(){
+        Zepto(".open-panel").show();
+        Zepto(".close-panel").hide();
+    });
+
+</script>
+<script>
+    window.onload = function () {
+        new myPagination({
+            id: 'pagination',
+            curPage:1, //初始页码
+            pageTotal: 50, //总页数
+            pageAmount: 10,  //每页多少条
+            dataTotal: 500, //总共多少条数据
+            pageSize: 5, //可选,分页个数
+            showPageTotalFlag:true, //是否显示数据统计
+            showSkipInputFlag:true, //是否支持跳转
+            getPage: function (page) {
+                //获取当前页数
+                console.log(page);
+            }
+        })
+
+    }
+</script>
+
+
+</html>

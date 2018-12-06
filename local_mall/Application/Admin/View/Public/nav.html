@@ -1,0 +1,131 @@
+
+<nav class="navbar navbar-default navbar-default-reset" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand h3" href="index.html"><img src="{$Think.ADMIN_IMG}/logo.png" width="100%"/></a>
+        </div>
+        <div>
+            <!--向左对齐-->
+            <ul class="nav navbar-nav navbar-left">
+
+                <li><a class="h3" href="index.html"><i><img src="{$Think.ADMIN_IMG}/zuanshi.png"/></i><span> 首页 </span></a></li>
+
+
+                <if condition="ACTION_NAME neq 'index' ">
+                    <li class="dropdown">
+
+
+                        <a class="h3" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span style="color: #feecbe;">
+                                <if condition="ACTION_NAME eq 'jifen_mall' ">
+                                    积分商城
+                                </if>
+                                <if condition="ACTION_NAME eq 'paimai' ">
+                                    拍卖行
+                                </if>
+                                <if condition="ACTION_NAME eq 'tool_mall' ">
+                                    道具商城
+                                </if>
+                                <if condition="ACTION_NAME eq 'geren' ">
+                                    个人信息
+                                </if>
+                                 <if condition="ACTION_NAME eq 'mimaxiugai' ">
+                                    个人信息
+                                </if>
+                                 <if condition="ACTION_NAME eq 'jiaoyimimaxiugai' ">
+                                    个人信息
+                                </if>
+                                 <if condition="ACTION_NAME eq 'kefulianxi' ">
+                                    个人信息
+                                </if>
+                                 <if condition="ACTION_NAME eq 'faq' ">
+                                    个人信息
+                                </if>
+
+                                <if condition="ACTION_NAME eq 'caiwu' ">
+                                    财务信息
+                                </if>
+                                <if condition="ACTION_NAME eq 'tuijian' ">
+                                    推荐列表
+                                </if>
+                                <if condition="ACTION_NAME eq 'tuijian_2' ">
+                                    推荐列表
+                                </if>
+                                <if condition="ACTION_NAME eq 'order_list' ">
+                                    订单详情
+                                </if>
+                                <if condition="ACTION_NAME eq 'baodan' ">
+                                    报单记录
+                                </if>
+                                <if condition="ACTION_NAME eq 'baodan_detail' ">
+                                    报单记录
+                                </if>
+                                <if condition="ACTION_NAME eq 'charge' ">
+                                    财务信息
+                                </if>
+                                <if condition="ACTION_NAME eq 'get_cash' ">
+                                    财务信息
+                                </if>
+                                <if condition="ACTION_NAME eq 'charge_status' ">
+                                    财务信息
+                                </if>
+
+                                 <if condition="ACTION_NAME eq 'tuijian_detail' ">
+                                    推荐信息
+                                </if>
+
+                            </span>
+                            <i><img src="{$Think.ADMIN_IMG}/sanjiao.png"/></i>
+                            <!--<b class="caret"></b>-->
+                        </a>
+
+
+                        <ul class="dropdown-menu">
+                            <li><a class="h4" href="caiwu.html">财务信息</a></li>
+                            <li><a class="h4" href="tuijian.html">推荐列表</a></li>
+                            <li><a class="h4" href="order_list.html">订单详情</a></li>
+                            <li><a class="h4" href="baodan.html">报单记录</a></li>
+                        </ul>
+                    </li>
+                </if>
+
+            </ul>
+
+            <!--向右对齐-->
+            <ul class="nav navbar-nav navbar-right">
+                <li class="da"><a class="h3">ID:{$user.phone}</a></li>
+                <li class="da"><a class="h4" href="geren.html"><img src="{$Think.ADMIN_IMG}/new/set.png"/></a></li>
+                <li class="da"><a class="h3"  href="" onclick="logout()">[退出]</a></li>
+                <li class="dropdown xiao" style="">
+                    <a class="h3" href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        ID:{$user.phone}<i><img src="{$Think.ADMIN_IMG}/sanjiao.png"/></i>
+                        <!--<b class="caret"></b>-->
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="h4" href="geren.html">个人中心</a></li>
+                        <li><a class="h4" href="#">退出</a></li>
+
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+
+<!--以下是公告栏-->
+<div class="gonggao">
+
+    <div class="gonggao-asset-main" style="padding: 0 40px;">
+        <marquee  onmouseover=this.stop() onmouseout=this.start() behavior="scroll" direction="left" class="gonggao_text">欢迎登录盛英汇管理系统</marquee>
+
+    </div>
+
+</div>
+
+
+
+
+
