@@ -131,6 +131,9 @@ class IndexController extends AdminController
     //    首页
     public function index()
     {
+
+        
+
         $this->is_realCheck();
         $uid = session('user_id');
         $userModel = M('user');

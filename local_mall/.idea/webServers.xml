@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="aba6a90d-347f-48e8-b70c-dd97e725b866" name="wamp" url="http://local.new_mall_3">
-        <fileTransfer port="0" mountedRoot="D:\myProject\local_mall" accessType="MOUNT" />
+        <fileTransfer port="0" mountedRoot="D:\tuijianSystem\local_mall" accessType="MOUNT" />
       </webServer>
     </option>
   </component>
